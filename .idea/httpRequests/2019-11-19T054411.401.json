@@ -1,7 +1,0 @@
-{
-  "timestamp": "2019-11-19 17:44:11",
-  "status": 401,
-  "error": "Unauthorized",
-  "message": "Unauthorized",
-  "path": "/oauth/token"
-}
