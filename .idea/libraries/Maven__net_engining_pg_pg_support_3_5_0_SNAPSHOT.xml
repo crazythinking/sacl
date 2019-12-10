@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: net.engining.pg:pg-support:3.5.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://D:/mvn_repo/net/engining/pg/pg-support/3.5.0-SNAPSHOT/pg-support-3.5.0-20191205.121331-6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/mvn_repo/net/engining/pg/pg-support/3.5.0-SNAPSHOT/pg-support-3.5.0-20191205.121331-6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/mvn_repo/net/engining/pg/pg-support/3.5.0-SNAPSHOT/pg-support-3.5.0-20191205.121331-6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

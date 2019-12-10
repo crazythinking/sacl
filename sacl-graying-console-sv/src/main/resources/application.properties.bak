@@ -1,0 +1,23 @@
+info.version=v0.1.0
+
+#为actuator API添加安全认证使用的用户
+spring.security.user.name=svdmin
+spring.security.user.password=svP@55w0rd
+
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+#server.undertow.worker-threads=20
+
+#打开sentinel对feign的支持
+feign.sentinel.enabled=true
+    
+# Ribbon config
+ribbon.ConnectTimeout=60000
+ribbon.ReadTimeout=60000
+    
+#TODO 先关闭nepxion内的swagger能力，与本身架构配置方式冲突，这部分配置方式需要重构
+swagger.service.enabled=false
+    
+#TODO nepxion内使用的属性Nacos config for rule，另外其他Nacos相关属性也是，这部分配置方式需要重构，与spring cloud alibaba统一
+nacos.server-addr=${spring.cloud.nacos.config.server-addr}

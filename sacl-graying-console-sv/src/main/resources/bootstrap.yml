@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: sacl-graying-console-sv
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  security:
+    #为actuator API添加安全认证使用的用户
+    user:
+      roles:
+      - ACTUATOR_MONITOR
+  jpa:
+    #Unfortunately, OSIV (Open Session in View) is enabled by default in Spring Boot, and OSIV is really a bad idea from a performance and scalability perspective. 
+    #该设置用于JPA的懒加载，由于容易造成性能问题，不建议使用，禁止使用@ManyToOne这类的注解；
+    open-in-view: false
+    hibernate:
+      naming:
+        #配置SQL生成命名策略，不用spring默认的会转为小写；配置为保持原命名方式
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database: MYSQL
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        metadata:
+          user.name: ${spring.security.user.name}
+          user.password: ${spring.security.user.password}
+          management.port:  ${management.server.port}
+          management.context-path: ${management.server.servlet.context-path}
+          version: ${info.version}
+          group: sacl-service-group
+          region: dev
+      config:
+        server-addr: localhost:8848
+        shared-dataids: druid.properties, sacl-zuul-sv-sv01.properties, sacl-zuul-sv.properties
+              #用来定义支持动态刷新的共享配置
+        refreshable-dataids: druid.properties
+    sentinel:
+      enabled: true
+
+management:
+  server:
+    servlet:
+      context-path: /admin
+  endpoints:
+    jmx:
+      exposure:
+        include: "*"
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: when-authorized
+      roles:
+      - ACTUATOR_MONITOR
+    shutdown:
+      enabled: true
+        
+pg:
+  common:
+    app-version: ${info.version}
+    appname: ${spring.application.name}
+  param:
+    json-parameter-facility: true
+          

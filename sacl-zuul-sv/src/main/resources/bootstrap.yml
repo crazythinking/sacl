@@ -1,0 +1,93 @@
+spring:
+  application:
+    name: sacl-zuul-sv
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: 
+#          jwk-set-uri: 
+  jpa:
+    #Unfortunately, OSIV (Open Session in View) is enabled by default in Spring Boot, and OSIV is really a bad idea from a performance and scalability perspective. 
+    #该设置用于JPA的懒加载，由于容易造成性能问题，不建议使用，禁止使用@ManyToOne这类的注解；
+    open-in-view: false
+    hibernate:
+      naming:
+        #配置SQL生成命名策略，不用spring默认的会转为小写；配置为保持原命名方式
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database: MYSQL
+  cloud:
+    #实际生产或测试环境服务注册中心与配置中心可能是分开部署的，因为通常服务注册中心需要更好的性能及需要承受更大的负载；因此分别指定服务地址；
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        metadata:
+          user.name: ${spring.security.user.name}
+          user.password: ${spring.security.user.password}
+          management.port:  ${management.server.port}
+          management.context-path: ${management.server.servlet.context-path}
+          version: ${info.version}
+          group: sacl-service-group
+          region: dev
+      config:
+        server-addr: localhost:8848
+        shared-dataids: druid.properties
+              #用来定义支持动态刷新的共享配置
+        refreshable-dataids: druid.properties
+#        group: DEFAULT_GROUP
+#        namespace: 0a27e6e9-04f9-4a0b-a045-91ed6edcb4fe
+    sentinel:
+      enabled: true
+      eager: true
+      transport:
+        dashboard: localhost:8080
+
+management:
+  server:
+    servlet:
+      context-path: /admin
+  endpoints:
+    jmx:
+      exposure:
+        include: "*"
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: when-authorized
+      roles:
+      - ACTUATOR_MONITOR
+    shutdown:
+      enabled: true
+      
+#security:
+#  oauth2:
+#    client:
+#      #指定OAuth2 client ID.
+#      #client-id: 233668646673605
+#      #指定OAuth2 client secret. 默认是一个随机的secret. 
+#      #client-secret: 33b17e044ee6a4fa383f46ec6e28ea1d
+#      #指定获取access token的URI.
+#      access-token-uri: https://graph.facebook.com/oauth/access_token
+#      userAuthorizationUri: https://www.facebook.com/dialog/oauth
+#      tokenName: oauth_token
+#      authenticationScheme: query
+#      clientAuthenticationScheme: form
+#    resource:
+#      #@see OAuth2LoadBalancerClientAutoConfiguration
+#      loadBalanced: true
+#      userInfoUri: https://graph.facebook.com/me
+      
+pg:
+  common:
+    app-version: ${info.version}
+    appname: ${spring.application.name}
+  param:
+    json-parameter-facility: true
+          

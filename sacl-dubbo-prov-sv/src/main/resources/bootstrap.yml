@@ -1,0 +1,72 @@
+spring:
+  cloud:
+#    inetutils:
+#      preferred-networks:
+#        - 192.168
+    #默认注册中心disable，这里是为了可以通过profile切换不同注册中心
+    zookeeper:
+      enabled: false
+      discovery:
+        enabled: false
+    #默认注册中心disable，这里是为了可以通过profile切换不同注册中心
+    #实际生产或测试环境服务注册中心与配置中心可能是分开部署的，因为通常服务注册中心需要更好的性能及需要承受更大的负载；因此分别指定服务地址；
+    nacos:
+      discovery:
+        enabled: false
+        register-enabled: false
+      config:
+        enabled: false
+        server-addr: localhost:8848
+        #也可利用组名称区分来区分不同环境或用于业务维度区分不同系统平台等
+        group: DEFAULT_GROUP
+        #用命名空间区分不同环境或不同租户（机构）tenant-1
+        namespace: 34ad5a45-ee8e-451d-96f0-d0983e7fd911
+        #用来定义支持动态刷新的共享配置
+        refreshable-dataids: sccc.properties,druid.properties,nacos.properties
+        shared-dataids: sccc.properties,druid.properties,nacos.properties
+#    sentinel:
+#      enabled: true
+#      eager: true
+#      transport:
+#        dashboard: localhost:8080
+#      datasource:
+#        # 可以配置多个流控规则数据源，每类规则对应一个ds；0.2.1版本这里配置不起作用，是一个bug，后续版本已经修复
+#        # 流量控制规则 (FlowRule)
+#        ds1:
+#          nacos:
+#            server-addr: ${spring.cloud.nacos.config.server-addr}
+#            data-id: ${spring.application.name}-sentinel-flow
+#            group-id: DEFAULT_GROUP
+#            # 默认json，也可以xml，但必须有jackson xml支持
+#            data-type: json
+#            # 自定义的converter，默认根据data-type用JsonConverter或XmlConverter
+#            converter-class:
+#        # 熔断降级规则 (DegradeRule)
+#        ds2:
+#          nacos:
+#            server-addr: ${spring.cloud.nacos.config.server-addr}
+#            data-id: ${spring.application.name}-sentinel-degrade
+#            group-id: DEFAULT_GROUP
+#        # 热点参数规则 (ParamFlowRule)
+#        ds3:
+#          nacos:
+#            server-addr: ${spring.cloud.nacos.config.server-addr}
+#            data-id: ${spring.application.name}-sentinel-paramflow
+#            group-id: DEFAULT_GROUP
+#        # 系统保护规则 (SystemRule)
+#        ds4:
+#          nacos:
+#            server-addr: ${spring.cloud.nacos.config.server-addr}
+#            data-id: ${spring.application.name}-sentinel-system
+#            group-id: DEFAULT_GROUP
+#        # 授权规则 (AuthorityRule)
+#        ds5:
+#          nacos:
+#            server-addr: ${spring.cloud.nacos.config.server-addr}
+#            data-id: ${spring.application.name}-sentinel-authority
+#            group-id: DEFAULT_GROUP
+
+#默认disable注册中心，这里是为了可以通过profile切换不同注册中心
+eureka:
+  client:
+    enabled: false

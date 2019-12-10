@@ -1,0 +1,12 @@
+server.port=15100
+
+#actuator暴露接口使用的端口，为了和api接口使用的端口进行分离
+management.server.port=15199
+
+#本微服务注册到Nacos的ip，默认取系统的非回路ip，多个网卡时去第一个网卡，通常不需要设置；
+#spring.cloud.nacos.discovery.ip=
+#本微服务注册到Nacos的端口
+spring.cloud.nacos.discovery.port=${server.port}
+
+gm.common.snowflake-data-center-id=1
+gm.common.snowflake-worker-id=1

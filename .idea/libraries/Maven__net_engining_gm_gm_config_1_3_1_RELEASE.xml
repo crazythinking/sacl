@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: net.engining.gm:gm-config:1.3.1.RELEASE">
+    <CLASSES>
+      <root url="jar://D:/mvn_repo/net/engining/gm/gm-config/1.3.1.RELEASE/gm-config-1.3.1.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/mvn_repo/net/engining/gm/gm-config/1.3.1.RELEASE/gm-config-1.3.1.RELEASE-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/mvn_repo/net/engining/gm/gm-config/1.3.1.RELEASE/gm-config-1.3.1.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

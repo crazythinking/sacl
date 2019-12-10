@@ -1,0 +1,10 @@
+pg:
+  common:
+    app-version: 0.1.0
+    appname: sacl-config-test
+    
+gm:
+  common:
+    snowflake-data-center-id: 1
+    snowflake-worker-id: 1
+    
