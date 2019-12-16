@@ -7,7 +7,7 @@
     <parent>
         <groupId>net.engining.project</groupId>
         <artifactId>project-parent</artifactId>
-        <version>3.4.RELEASE</version>
+        <version>3.5-SNAPSHOT</version>
     </parent>
 
     <groupId>net.engining.sacl</groupId>
@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sacl.version>${project.version}</sacl.version>
 
-        <spring.cloud.alibaba.version>2.1.0.RELEASE</spring.cloud.alibaba.version>
+        <spring.cloud.alibaba.version>2.1.1.RELEASE</spring.cloud.alibaba.version>
         <spring-cloud-netflix.version>2.1.3.RELEASE</spring-cloud-netflix.version>
         <nepxion.discovery.plugin.version>5.5.0</nepxion.discovery.plugin.version>
         <spring.boot.admin.version>2.1.6</spring.boot.admin.version>

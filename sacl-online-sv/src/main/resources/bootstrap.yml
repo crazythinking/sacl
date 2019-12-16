@@ -1,8 +1,12 @@
 spring:
+  application:
+    name: sacl-online-sv
   cloud:
-#    inetutils:
-#      preferred-networks:
-#        - 192.168
+    compatibility-verifier:
+      enabled: true
+    #inetutils:
+      #preferred-networks:
+        #- 192.168
     #默认注册中心disable，这里是为了可以通过profile切换不同注册中心
     zookeeper:
       enabled: false
@@ -16,14 +20,14 @@ spring:
         register-enabled: false
       config:
         enabled: false
-        server-addr: localhost:8848
+        server-addr: 139.224.144.145:8080
+        #用命名空间区分不同环境或不同租户（机构）tenant-1
+        #namespace: 34ad5a45-ee8e-451d-96f0-d0983e7fd911
         #也可利用组名称区分来区分不同环境或用于业务维度区分不同系统平台等
         group: DEFAULT_GROUP
-        #用命名空间区分不同环境或不同租户（机构）tenant-1
-        namespace: 34ad5a45-ee8e-451d-96f0-d0983e7fd911
-        #用来定义支持动态刷新的共享配置
-        refreshable-dataids: sccc.properties,druid.properties,nacos.properties
-        shared-dataids: sccc.properties,druid.properties,nacos.properties
+        #用来定义支持动态刷新及共享配置，通常可用于代替本地各组件的common配置
+        refreshable-dataids: scsv.properties,nacos.properties,druid.properties
+        shared-dataids: scsv.properties,nacos.properties,druid.properties
 #    sentinel:
 #      enabled: true
 #      eager: true
