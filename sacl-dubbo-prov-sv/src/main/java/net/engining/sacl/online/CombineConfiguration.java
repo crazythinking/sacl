@@ -1,7 +1,7 @@
 package net.engining.sacl.online;
 
 import net.engining.gm.config.*;
-import net.engining.sacl.online.config.OauthResourceServerExtContextConfig;
+import net.engining.sacl.config.Only4ActuatorWebSecurityExtContextConfig;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -32,8 +32,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		Swagger2ContextConfig.class,
 		WebContextConfig.class,
 		WebMvcExtContextConfig.class,
-		OauthResourceServerExtContextConfig.class,
-		SnowflakeSequenceIDContextConfig.class
+		Only4ActuatorWebSecurityExtContextConfig.class
 		})
 public class CombineConfiguration {
 	

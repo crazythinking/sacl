@@ -13,21 +13,21 @@ public class EchoService {
     /** logger */
     private static final Logger log = LoggerFactory.getLogger(EchoService.class);
 
-    public EchoController.Foo foo1() throws InterruptedException {
-        EchoController.Foo foo = new EchoController.Foo();
+    public Foo foo1() throws InterruptedException {
+        Foo foo = new Foo();
         foo.setF1("eric1");
         foo.setF2(new BigDecimal(111));
         log.info("foo1 will return foo after 1s, @[{}]", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
-        Thread.sleep(1000L);
+        Thread.sleep(10L);
         return foo;
     }
 
-    public EchoController.Foo foo2() throws InterruptedException {
-        EchoController.Foo foo = new EchoController.Foo();
+    public Foo foo2() throws InterruptedException {
+        Foo foo = new Foo();
         foo.setF1("eric2");
         foo.setF2(new BigDecimal(222));
         log.info("foo2 will return foo after 1s, @[{}]", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
-        Thread.sleep(1000L);
+        Thread.sleep(100L);
         return foo;
     }
 }

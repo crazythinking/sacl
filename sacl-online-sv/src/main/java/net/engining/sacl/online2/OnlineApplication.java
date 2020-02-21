@@ -7,21 +7,23 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.archaius.ArchaiusAutoConfiguration;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * 微服务SpringBoot启动类;
  * 这里继承了SpringBootServletInitializer，是为了可以支持WAR包部署的方式；如果只考虑用jar方式启动内置web容器如：Tomcat，则不需要继承；
  * 由于要使用CommonsMultipartResolver代替spring boot默认的StandardServletMultipartResolver所以需要排除MultipartAutoConfiguration；
- * //FIXME 这里是alibaba的一个bug，后续版本已经修复；没有增加EnableCircuitBreaker的实现，暂时注掉
- * //@EnableCircuitBreaker
- * 
+ *
  * @author luxue
  *
  */
 @EnableDiscoveryClient
 @EnableFeignClients
-@SpringBootApplication(exclude = MultipartAutoConfiguration.class)
+@EnableCircuitBreaker
+@SpringBootApplication(exclude = {
+        ArchaiusAutoConfiguration.class
+})
 public class OnlineApplication extends SpringBootServletInitializer{
 	
 	@Override

@@ -16,14 +16,14 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @EnableDiscoveryClient
 @SpringBootApplication
-public class OnlineApplication extends SpringBootServletInitializer{
+public class OnlineDubboProviderApplication extends SpringBootServletInitializer{
 	
 	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(OnlineApplication.class);
+        return application.sources(OnlineDubboProviderApplication.class);
     }
 
     public static void main(String[] args) {
-    	SpringApplication.run(OnlineApplication.class, args);
+    	SpringApplication.run(OnlineDubboProviderApplication.class, args);
     }
 }

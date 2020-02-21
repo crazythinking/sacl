@@ -14,14 +14,14 @@
         <Console name="Console" target="SYSTEM_OUT">
             <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout disableAnsi="false" charset="UTF-8"
-                           pattern="%highlight{[%-5level] [%d{DEFAULT}] [%thread] [%MDC] ([%c{1.}:%line:%method]) %msg%n}{FATAL=Bright red, ERROR=Red, WARN=Bright yellow, INFO=Bright green, DEBUG=green, TRACE=cyan}"/>
+                           pattern="%highlight{[%-5level] [%d{DEFAULT}] [%pid] [%thread] [%MDC] ([%c{1.}:%line:%method]) %msg%n}{FATAL=Bright red, ERROR=Red, WARN=Bright yellow, INFO=Bright green, DEBUG=green, TRACE=cyan}"/>
         </Console>
 
         <!--所有日志,异步输出,通常情况下缓存256效率最高，但是对于大型项目，可以选2048以上值-->
         <!--<RollingFile name="AllLog" fileName="${LOG_HOME}/all.log" append="true"
                      filePattern="${LOG_HOME}/$${date:yyyy-MM}/all-%d{yyyy-MM-dd-HHmmss}.log.gz">
             <PatternLayout charset="UTF-8"
-                           pattern="[%-5level] [%d{DEFAULT}] [%thread] [%MDC] ([%c:%line:%method]) %msg%n"/>
+                           pattern="[%-5level] [%d{DEFAULT}] [%pid] [%thread] [%MDC] ([%c:%line:%method]) %msg%n"/>
             <SizeBasedTriggeringPolicy size="50MB"/>
         </RollingFile>
         <Async name="AsyncAllLog" bufferSize="256">
@@ -36,7 +36,7 @@
                 <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
             </Filters>
             <PatternLayout charset="UTF-8"
-                           pattern="[%-5level] [%d{DEFAULT}] [%thread] [%MDC] ([%c:%line:%method]) %msg%n"/>
+                           pattern="[%-5level] [%d{DEFAULT}] [%pid] [%thread] [%MDC] ([%c:%line:%method]) %msg%n"/>
             <SizeBasedTriggeringPolicy size="50MB"/>
         </RollingFile>
         <Async name="AsyncDebugLog" bufferSize="256">
@@ -51,7 +51,7 @@
                 <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
             <PatternLayout charset="UTF-8"
-                           pattern="[%-5level] [%d{DEFAULT}] [%thread] [%MDC] ([%c:%line:%method]) %msg%n"/>
+                           pattern="[%-5level] [%d{DEFAULT}] [%pid] [%thread] [%MDC] ([%c:%line:%method]) %msg%n"/>
             <SizeBasedTriggeringPolicy size="50MB"/>
         </RollingFile>
         <Async name="AsyncInfoLog" bufferSize="256">
@@ -65,7 +65,7 @@
                 <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
             <PatternLayout charset="UTF-8"
-                           pattern="[%-5level] [%d{DEFAULT}] [%thread] [%MDC] ([%c:%line:%method]) %msg%n"/>
+                           pattern="[%-5level] [%d{DEFAULT}] [%pid] [%thread] [%MDC] ([%c:%line:%method]) %msg%n"/>
             <SizeBasedTriggeringPolicy size="50MB"/>
         </RollingFile>
         <Async name="AsyncErrLog" bufferSize="256">
@@ -78,11 +78,15 @@
         <Logger name="net.engining" level="TRACE" additivity="true"/>
 
         <Logger name="org.springframework" level="INFO" additivity="true"/>
-        <Logger name="org.springframework.web" level="INFO" additivity="true"/>
+        <Logger name="org.springframework.web" level="INFO" additivity="false"/>
         <!--<Logger name="org.springframework.boot" level="TRACE" additivity="true"/>-->
-        <Logger name="org.springframework.security" level="INFO" additivity="true"/>
+        <Logger name="org.springframework.security" level="INFO" additivity="false"/>
 
-        <!--只输入级别高于trace的日志-->
+        <!--
+            root：根logger，其他logger是其子，默认additivity="true"，会在根logger和子logger（其内需要配置AppenderRef）内都产生对应日志；
+            而additivity="false"时，将不会在根logger内产生日志；
+            此处子logger都没有配置对应的appender，因此只有additivity="true"时，才会在根logger内产生日志；
+        -->
         <root level="${LOG_LEVEL}">
             <AppenderRef ref="Console"/>
             <!--<AppenderRef ref="AsyncAllLog"/>-->

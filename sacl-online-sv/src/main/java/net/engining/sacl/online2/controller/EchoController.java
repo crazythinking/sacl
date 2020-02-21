@@ -50,10 +50,10 @@ public class EchoController {
 				.putAdditionalRepMap("say", String.valueOf(a / b));
 	}
 
-	@ApiOperation(value = "flux test for object", notes = "")
+	@ApiOperation(value = "test for object", notes = "")
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	@PostMapping(value = "/echoObj")
-	public List<Foo> echo1(@RequestBody Foo foo) throws Exception{
+	public List<Foo> echo1() throws Exception{
 
 		return Lists.newArrayList(echoService.foo1(), echoService.foo2());
 
@@ -68,24 +68,4 @@ public class EchoController {
 		return token;
 	}
 
-	static class Foo extends BaseResponseBean {
-		String f1;
-		BigDecimal f2;
-
-		public String getF1() {
-			return f1;
-		}
-
-		public void setF1(String f1) {
-			this.f1 = f1;
-		}
-
-		public BigDecimal getF2() {
-			return f2;
-		}
-
-		public void setF2(BigDecimal f2) {
-			this.f2 = f2;
-		}
-	}
 }
