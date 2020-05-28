@@ -179,6 +179,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
+		<!-- 状态机 -->
+		<dependency>
+			<groupId>org.springframework.statemachine</groupId>
+			<artifactId>spring-statemachine-starter</artifactId>
+			<version>${spring.statemachine.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-boot-starter-logging</artifactId>
+					<groupId>org.springframework.boot</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		
 		<!-- 重试支持 -->
 		<dependency>
@@ -237,6 +250,15 @@
 			<artifactId>graphql-java-tools</artifactId>
 			<version>5.2.4</version>
 		</dependency>-->
+
+		<dependency>
+			<groupId>org.apache.skywalking</groupId>
+			<artifactId>apm-toolkit-log4j-2.x</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.skywalking</groupId>
+			<artifactId>apm-toolkit-trace</artifactId>
+		</dependency>
 		
 		<!-- dbcp连接池和mysql驱动 -->
 		<dependency>

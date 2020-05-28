@@ -1,6 +1,7 @@
 package net.engining.sacl.online2;
 
 import net.engining.gm.config.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -34,6 +35,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		WebMvcExtContextConfig.class,
 		Only4ActuatorWebSecurityExtContextConfig.class,
 		SnowflakeSequenceIDContextConfig.class
+		})
+@EntityScan(
+		basePackages = {
+				"net.engining.pg.parameter.entity",
 		})
 public class CombineConfiguration {
 	

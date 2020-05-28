@@ -1,7 +1,7 @@
 package net.engining.sacl.auth.config;
 
 import com.google.common.collect.Maps;
-import net.engining.profile.security.ProfileUserDetails;
+import net.engining.profile.security.service.ProfileUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;

@@ -1,9 +1,9 @@
 package net.engining.sacl.auth.config;
 
 import net.engining.gm.config.props.GmCommonProperties;
-import net.engining.profile.security.ProfileUserDetailsServiceImpl;
 import net.engining.profile.security.listener.ClearPasswordTriesListener;
 import net.engining.profile.security.listener.PasswordTriesListener;
+import net.engining.profile.security.service.ProfileUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,11 +14,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.security.SecureRandom;
 
 /**
  * 这个类的重点就是声明 PasswordEncoder 和 AuthenticationManager两个 Bean.
