@@ -1,6 +1,7 @@
 package net.engining.sacl.online2;
 
 import net.engining.gm.config.*;
+import net.engining.sacl.online2.config.EsRestClientConfig;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -34,7 +35,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		WebContextConfig.class,
 		WebMvcExtContextConfig.class,
 		Only4ActuatorWebSecurityExtContextConfig.class,
-		SnowflakeSequenceIDContextConfig.class
+		SnowflakeSequenceIDContextConfig.class,
+		EsRestClientConfig.class
 		})
 @EntityScan(
 		basePackages = {
