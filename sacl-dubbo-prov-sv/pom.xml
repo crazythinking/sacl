@@ -207,12 +207,6 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
-		<!-- 支持方法级验证 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-
 		<!-- swagger -->
 		<dependency>
 			<groupId>io.springfox</groupId>

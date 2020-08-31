@@ -1,7 +1,5 @@
 package net.engining.sacl.online2.controller;
 
-import net.engining.pg.web.bean.BaseResponseBean;
-
 import java.math.BigDecimal;
 
 /**
@@ -10,7 +8,7 @@ import java.math.BigDecimal;
  * @date : 2019-12-26 10:32
  * @since :
  **/
-public class Foo extends BaseResponseBean {
+public class Foo {
     String f1;
     BigDecimal f2;
 

@@ -7,6 +7,7 @@ import net.engining.pg.web.bean.CommonWithHeaderResponse;
 import net.engining.sacl.online2.config.AuditEvents;
 import net.engining.sacl.online2.config.AuditStateMachineBuilder;
 import net.engining.sacl.online2.config.AuditStates;
+import net.engining.sacl.online2.sao.SaoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;
@@ -37,6 +38,9 @@ public class Echo2Controller {
     EchoService echoService;
 
     @Autowired
+    SaoService saoService;
+
+    @Autowired
     AuditStateMachineBuilder auditStateMachineBuilder;
 
     @Autowired
@@ -47,6 +51,14 @@ public class Echo2Controller {
     public List<Foo> echo2() throws Exception{
 
         return Lists.newArrayList(echoService.foo1(), echoService.foo2());
+
+    }
+
+    @ApiOperation(value = "test for object", notes = "")
+    @GetMapping(value = "/echoObj2Feign")
+    public List<Foo> echo2Feign() throws Exception{
+
+        return saoService.echo2();
 
     }
 

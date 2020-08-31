@@ -18,7 +18,7 @@ public class EchoService {
         foo.setF1("eric1");
         foo.setF2(new BigDecimal(111));
         log.info("foo1 will return foo after 1s, @[{}]", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
-        Thread.sleep(10L);
+        Thread.sleep(1000L);
         return foo;
     }
 
@@ -27,7 +27,7 @@ public class EchoService {
         foo.setF1("eric2");
         foo.setF2(new BigDecimal(222));
         log.info("foo2 will return foo after 1s, @[{}]", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
-        Thread.sleep(100L);
+        Thread.sleep(2000L);
         return foo;
     }
 }
