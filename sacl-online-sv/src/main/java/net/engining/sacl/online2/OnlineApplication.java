@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cloud.bus.jackson.RemoteApplicationEventScan;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -25,6 +26,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
         Sao.class
 })
 @EnableCircuitBreaker
+@RemoteApplicationEventScan(basePackages = "net.engining.sacl.online2.bus")
 @SpringBootApplication(exclude = {
         ArchaiusAutoConfiguration.class
 })

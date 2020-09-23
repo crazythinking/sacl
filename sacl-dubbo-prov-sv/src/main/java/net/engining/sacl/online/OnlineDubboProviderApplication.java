@@ -4,7 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cloud.bus.jackson.RemoteApplicationEventScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.archaius.ArchaiusAutoConfiguration;
 
 /**
  * 微服务SpringBoot启动类;
@@ -15,7 +17,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  *
  */
 @EnableDiscoveryClient
-@SpringBootApplication
+@RemoteApplicationEventScan(basePackages = "net.engining.sacl.online.bus")
+@SpringBootApplication(exclude = {
+        ArchaiusAutoConfiguration.class
+})
 public class OnlineDubboProviderApplication extends SpringBootServletInitializer{
 	
 	@Override

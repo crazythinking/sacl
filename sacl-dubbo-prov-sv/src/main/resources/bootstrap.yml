@@ -20,7 +20,7 @@ spring:
       config:
         enabled: false
         group: sacl
-        ext-config:
+        extension-configs[x]:
           - dataId: scsv.properties
             group: DEFAULT_GROUP
             refresh: true
@@ -30,4 +30,13 @@ spring:
           - dataId: druid.properties
             group: DEFAULT_GROUP
             refresh: true
-
+    bus:
+      enabled: false
+      ack:
+        enabled: false
+      env:
+        enabled: false
+      refresh:
+        enabled: false
+      trace:
+        enabled: false
