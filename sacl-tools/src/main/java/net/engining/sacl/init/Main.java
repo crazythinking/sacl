@@ -3,6 +3,8 @@ package net.engining.sacl.init;
 import com.google.common.collect.Maps;
 import net.engining.sacl.init.kettle.KettleManagerService;
 
+import java.util.Map;
+
 public class Main {
 
 	public static void main(String[] args) throws Exception{
@@ -24,9 +26,19 @@ public class Main {
 //				Maps.newHashMap()
 //		);
 
+//		kettleManagerService.runJobFromRepository(
+//				"test_repo",
+//				null,
+//				Maps.newHashMap()
+//		);
+
+		Map<String, String> params = Maps.newHashMap();
+		params.put("BATCH_DATE", "2003-01-01");
 		kettleManagerService.runJobFromRepository(
-				"test_repo",
-				Maps.newHashMap()
+				"ODS_INDEX",
+//				"kjb1",
+				null,
+				params
 		);
 	}
 

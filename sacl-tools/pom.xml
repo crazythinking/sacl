@@ -16,6 +16,7 @@
 	<properties>
 		<maven.deploy.skip>true</maven.deploy.skip>
 		<kettle.version>9.0.0.6-674</kettle.version>
+		<oracle.version>12.2.0.1.0</oracle.version>
 	</properties>
 
 	<dependencies>
@@ -54,6 +55,12 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.31</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>oracle6</artifactId>
+			<version>${oracle.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>

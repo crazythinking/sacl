@@ -169,7 +169,7 @@ public class KettleManagerService {
      * @param params
      * @return the job that was executed, or null if there was an error
      */
-    public Job runJobFromRepository(String jobName, Map<String, String> params) throws KettleException {
+    public Job runJobFromRepository(String jobName, String subdirectory, Map<String, String> params) throws KettleException {
 
         if (!KettleEnvironment.isInitialized()) {
             KettleEnvironment.init();
@@ -212,7 +212,13 @@ public class KettleManagerService {
 
         // load latest revision of the job
         // The JobMeta object is the programmatic representation of a job definition.
-        JobMeta jobMeta = repository.loadJob(jobName, tree, null, null);
+        JobMeta jobMeta;
+        if (ValidateUtilExt.isNotNullOrEmpty(subdirectory)){
+            jobMeta = repository.loadJob(jobName, tree.findChild(subdirectory), null, null);
+        }
+        else {
+            jobMeta = repository.loadJob(jobName, tree, null, null);
+        }
 
         // Creating a Job object which is the programmatic representation of a job
         // A Job object can be executed, report success, etc.
