@@ -322,7 +322,7 @@
       <job_object_id/>
       <filename/>
       <jobname>REFRESH_DATA</jobname>
-      <directory>/</directory>
+      <directory>/kjb1/</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>

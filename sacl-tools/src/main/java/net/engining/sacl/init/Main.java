@@ -36,8 +36,8 @@ public class Main {
 		params.put("BATCH_DATE", "2003-01-01");
 		kettleManagerService.runJobFromRepository(
 				"ODS_INDEX",
-//				"kjb1",
-				null,
+				"kjb1",
+//				null,
 				params
 		);
 	}
