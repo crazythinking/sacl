@@ -81,7 +81,9 @@
         <!--<Logger name="org.springframework.web" level="INFO" additivity="false"/>-->
         <!--<Logger name="org.springframework.boot" level="TRACE" additivity="true"/>-->
         <!--<Logger name="org.springframework.security" level="INFO" additivity="false"/>-->
+        <!--<Logger name="org.springframework.integration" level="TRACE" additivity="true"/>-->
         <Logger name="org.springframework.cloud.bus" level="TRACE" additivity="true"/>
+        <Logger name="org.springframework.cloud.stream" level="TRACE" additivity="true"/>
 
         <!--<Logger name="com.alibaba.cloud.sentinel" level="TRACE" additivity="true"/>-->
 

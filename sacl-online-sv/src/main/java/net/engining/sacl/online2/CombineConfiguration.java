@@ -1,6 +1,5 @@
 package net.engining.sacl.online2;
 
-import feign.Request;
 import net.engining.gm.config.GeneralContextConfig;
 import net.engining.gm.config.JPAContextConfig;
 import net.engining.gm.config.SnowflakeSequenceIDContextConfig;
@@ -13,7 +12,8 @@ import net.engining.pg.props.CommonProperties;
 import net.engining.sacl.config.Only4ActuatorWebSecurityExtContextConfig;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -46,6 +46,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		basePackages = {
 				"net.engining.pg.parameter.entity",
 		})
+@EnableBinding(Processor.class)
 public class CombineConfiguration {
 
 //	@Bean

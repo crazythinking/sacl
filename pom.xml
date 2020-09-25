@@ -36,6 +36,7 @@
         <jasypt.version>2.1.1</jasypt.version>
         <sentinel.version>1.7.2</sentinel.version>
         <skywalking.version>7.0.0</skywalking.version>
+        <groovy.version>3.0.5</groovy.version>
     </properties>
 
     <modules>
@@ -45,6 +46,7 @@
         <module>sacl-auth-sv</module>
         <module>sacl-tools-component</module>
         <module>sacl-tools</module>
+        <module>sacl-batch-executor-sv</module>
     </modules>
 
     <dependencyManagement>
@@ -135,6 +137,14 @@
                 <groupId>org.apache.skywalking</groupId>
                 <artifactId>apm-toolkit-trace</artifactId>
                 <version>${skywalking.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- 自身框架依赖 -->

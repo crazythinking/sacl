@@ -45,10 +45,14 @@ public class Echo3Controller {
     @Autowired
     private ApplicationEventPublisher publisher;
 
+    /**
+     * consumer端的ServiceId
+     */
+    private String destination = "sacl-dubbo-prov-sv";
+
     @ApiOperation(value = "test for bus", notes = "")
     @PostMapping("/publish/user")
-    public boolean publish(@RequestParam String name,
-                           @RequestParam(required = false) String destination) {
+    public boolean publish(@RequestParam String name) {
         User user = new User();
         user.setId(System.currentTimeMillis());
         user.setName(name);
@@ -61,8 +65,7 @@ public class Echo3Controller {
 
     @ApiOperation(value = "test for bus, generic message", notes = "")
     @PostMapping("/publish/user2")
-    public boolean publish2(@RequestParam String name,
-                           @RequestParam(required = false) String destination) {
+    public boolean publish2(@RequestParam String name) {
         User user = new User();
         user.setId(System.currentTimeMillis());
         user.setName(name);
@@ -70,6 +73,13 @@ public class Echo3Controller {
         publisher.publishEvent(
                 new GenericRemoteApplicationEvent<User>(this, user, busProperties.getId(), destination)
         );
+        return true;
+    }
+
+    @ApiOperation(value = "test for stream", notes = "")
+    @PostMapping("/publish/user3")
+    public boolean publish3(@RequestParam String name) {
+
         return true;
     }
 

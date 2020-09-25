@@ -19,17 +19,25 @@ spring:
                 username: ${spring.rabbitmq.username}
                 virtual-host: ${spring.rabbitmq.virtual-host}
       bindings:
-        springCloudBusInput:
+        input:
           binder: rabbitCluster
-          destination: sacl.destination1
+          destination: sacl.exchange1
           group: saclGroup
           contentType: application/json
-        springCloudBusOutput:
+        output:
           binder: rabbitCluster
-          destination: sacl.destination2
+          destination: sacl.exchange2
           group: saclGroup
           contentType: application/json
-          producer:
-            errorChannelEnabled:
+#        springCloudBusInput:
+#          binder: rabbitCluster
+#          destination: sacl.destination1
+#          group: saclGroup
+#          contentType: application/json
+#        springCloudBusOutput:
+#          binder: rabbitCluster
+#          destination: sacl.destination2
+#          group: saclGroup
+#          contentType: application/json
 
 
