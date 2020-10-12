@@ -7,7 +7,7 @@
     <parent>
         <groupId>net.engining.project</groupId>
         <artifactId>project-parent</artifactId>
-        <version>3.6.RELEASE</version>
+        <version>3.7-SNAPSHOT</version>
     </parent>
 
     <groupId>net.engining.sacl</groupId>
@@ -19,23 +19,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sacl.version>${project.version}</sacl.version>
 
-        <pg.version>3.6.0.RELEASE</pg.version>
-        <control.version>1.1.4.RELEASE</control.version>
-        <gm.version>1.5.0.RELEASE</gm.version>
+        <pg.version>3.7.0-SNAPSHOT</pg.version>
+        <control.version>1.2.0-SNAPSHOT</control.version>
+        <gm.version>1.6.0-SNAPSHOT</gm.version>
         <profile.version>4.0.3.RELEASE</profile.version>
 
-        <spring.cloud.alibaba.version>2.1.2.RELEASE</spring.cloud.alibaba.version>
-        <spring-cloud-netflix.version>2.1.5.RELEASE</spring-cloud-netflix.version>
-        <nepxion.discovery.plugin.version>5.5.8</nepxion.discovery.plugin.version>
+        <spring.cloud.alibaba.version>2.2.1.RELEASE</spring.cloud.alibaba.version>
+        <spring-cloud-netflix.version>2.2.5.RELEASE</spring-cloud-netflix.version>
+        <nepxion.discovery.plugin.version>6.3.1</nepxion.discovery.plugin.version>
         <spring.statemachine.version>2.2.0.RELEASE</spring.statemachine.version>
-        <druid.spring.version>1.1.21</druid.spring.version>
+        <druid.spring.version>1.2.1</druid.spring.version>
         <swagger2.version>2.9.2</swagger2.version>
         <swagger-project.version>1.5.22</swagger-project.version>
         <xxljob.version>2.1.1.2.RELEASE</xxljob.version>
         <zookeeper.version>3.4.13</zookeeper.version>
         <jasypt.version>2.1.1</jasypt.version>
         <sentinel.version>1.7.2</sentinel.version>
-        <skywalking.version>7.0.0</skywalking.version>
         <groovy.version>3.0.5</groovy.version>
     </properties>
 

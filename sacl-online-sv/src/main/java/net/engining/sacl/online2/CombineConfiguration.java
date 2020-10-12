@@ -46,7 +46,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		basePackages = {
 				"net.engining.pg.parameter.entity",
 		})
-@EnableBinding(Processor.class)
 public class CombineConfiguration {
 
 //	@Bean

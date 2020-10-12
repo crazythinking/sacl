@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.bus.SpringCloudBusClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Processor;
@@ -21,6 +22,7 @@ import org.springframework.messaging.support.GenericMessage;
  * @date : 2020-09-24 14:34
  * @since :
  **/
+//@EnableBinding(Processor.class)
 public class SaclStreamHandler {
 
     /** logger */
@@ -33,7 +35,8 @@ public class SaclStreamHandler {
     SubscribableChannel subscribableChannel;
 
 
-    @SendTo(Processor.OUTPUT)
+    //@SendTo(Processor.OUTPUT)
+    @SendTo(SpringCloudBusClient.OUTPUT)
     public User sentUser(String name){
         User user = new User();
         user.setId(System.currentTimeMillis());
@@ -42,7 +45,8 @@ public class SaclStreamHandler {
         return user;
     }
 
-    @StreamListener(target = Processor.INPUT)
+    //@StreamListener(Processor.INPUT)
+    @StreamListener(SpringCloudBusClient.INPUT)
     public void receive(@Payload User user){
         log.debug(JSON.toJSONString(user));
     }
