@@ -12,7 +12,6 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.SubscribableChannel;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.support.GenericMessage;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
@@ -31,18 +30,13 @@ public class SaclStreamHandler {
     private static final Logger log = LoggerFactory.getLogger(SaclStreamHandler.class);
 
     @Autowired
-    //@Qualifier(Processor.OUTPUT)
     @Qualifier(SpringCloudBusClient.OUTPUT)
     MessageChannel messageChannel;
 
     @Autowired
-    //@Qualifier(Processor.INPUT)
     @Qualifier(SpringCloudBusClient.INPUT)
     SubscribableChannel subscribableChannel;
 
-
-    //@SendTo(Processor.OUTPUT)
-    //@SendTo(SpringCloudBusClient.OUTPUT)
     public void sentUser(String name){
         User user = new User();
         user.setUserId(System.currentTimeMillis());
@@ -51,12 +45,16 @@ public class SaclStreamHandler {
         messageChannel.send(MessageBuilder.createMessage(user, new MessageHeaders(Maps.newHashMap())));
     }
 
-    public void sentUser2(String name){
+    //@SendTo(Processor.OUTPUT)
+    @SendTo(SpringCloudBusClient.OUTPUT)
+    public User sentUser2(String name){
         User user = new User();
         user.setUserId(System.currentTimeMillis());
         user.setName(name);
         user.setAge(RandomUtil.randomInt(1, 100));
-        messageChannel.send(new GenericMessage<>(user));
+        return user;
     }
+
+
 
 }

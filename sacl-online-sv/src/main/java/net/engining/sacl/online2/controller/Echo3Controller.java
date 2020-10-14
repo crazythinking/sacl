@@ -14,11 +14,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.bus.BusProperties;
 import org.springframework.cloud.bus.event.AckRemoteApplicationEvent;
+import org.springframework.cloud.stream.binding.BinderAwareChannelResolver;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
+import org.springframework.http.HttpStatus;
+import org.springframework.messaging.support.GenericMessage;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -48,6 +54,9 @@ public class Echo3Controller {
 
     @Autowired
     private SaclStreamHandler saclStreamHandler;
+
+    @Autowired
+    private BinderAwareChannelResolver resolver;
 
     /**
      * consumer端的ServiceId
@@ -92,6 +101,12 @@ public class Echo3Controller {
             throws JsonProcessingException {
         LOGGER.info("Server [port : {}] listeners on {}", serverProperties.getPort(),
                 objectMapper.writeValueAsString(event));
+    }
+
+    @RequestMapping(value="/{target}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void send(@RequestBody String body, @PathVariable("target") String target){
+        resolver.resolveDestination(target).send(new GenericMessage<String>(body));
     }
 
 }
