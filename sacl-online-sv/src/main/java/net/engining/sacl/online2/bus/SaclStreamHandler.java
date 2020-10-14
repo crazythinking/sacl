@@ -1,20 +1,20 @@
 package net.engining.sacl.online2.bus;
 
 import cn.hutool.core.util.RandomUtil;
-import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.bus.SpringCloudBusClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.MessageHandler;
+import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.SubscribableChannel;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.support.GenericMessage;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.stereotype.Component;
 
 /**
  * @author : Eric Lu
@@ -23,40 +23,40 @@ import org.springframework.messaging.support.GenericMessage;
  * @since :
  **/
 //@EnableBinding(Processor.class)
+@EnableBinding(SpringCloudBusClient.class)
+@Component
 public class SaclStreamHandler {
 
     /** logger */
     private static final Logger log = LoggerFactory.getLogger(SaclStreamHandler.class);
 
     @Autowired
+    //@Qualifier(Processor.OUTPUT)
+    @Qualifier(SpringCloudBusClient.OUTPUT)
     MessageChannel messageChannel;
 
     @Autowired
+    //@Qualifier(Processor.INPUT)
+    @Qualifier(SpringCloudBusClient.INPUT)
     SubscribableChannel subscribableChannel;
 
 
     //@SendTo(Processor.OUTPUT)
-    @SendTo(SpringCloudBusClient.OUTPUT)
-    public User sentUser(String name){
+    //@SendTo(SpringCloudBusClient.OUTPUT)
+    public void sentUser(String name){
         User user = new User();
-        user.setId(System.currentTimeMillis());
+        user.setUserId(System.currentTimeMillis());
         user.setName(name);
         user.setAge(RandomUtil.randomInt(1, 100));
-        return user;
-    }
-
-    //@StreamListener(Processor.INPUT)
-    @StreamListener(SpringCloudBusClient.INPUT)
-    public void receive(@Payload User user){
-        log.debug(JSON.toJSONString(user));
+        messageChannel.send(MessageBuilder.createMessage(user, new MessageHeaders(Maps.newHashMap())));
     }
 
     public void sentUser2(String name){
         User user = new User();
-        user.setId(System.currentTimeMillis());
+        user.setUserId(System.currentTimeMillis());
         user.setName(name);
         user.setAge(RandomUtil.randomInt(1, 100));
-        messageChannel.send(new GenericMessage<User>(user));
+        messageChannel.send(new GenericMessage<>(user));
     }
 
 }

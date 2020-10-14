@@ -72,8 +72,8 @@ spring:
 #          contentType: application/json
         springCloudBusInput:
 #          binder: rabbitCluster
-          destination: sacl-dubbo-prov-sv.exchange1 # exchange 用生产者的applicationName做前缀
-          group: repayBack # queue的后缀,带业务含义
+          destination: sacl-online-sv.exchange1 # exchange 用生产者的applicationName做前缀
+          group: makeLoan # queue的后缀,带业务含义
           contentType: application/json
           consumer:
             maxAttempts: 3 # 当消息消费失败时，尝试消费该消息的最大次数（消息消费失败后，发布者会重新投递）。默认3
@@ -82,5 +82,5 @@ spring:
             backOffMaxInterval: 10000 # 下一次尝试重试的最大时间间隔，默认为10000ms，即10s
         springCloudBusOutput:
           destination: ${spring.application.name}.exchange1 # exchange的前缀,生产者的applicationName
-          group: makeLoan # queue的后缀,带业务含义
+          group: repayBack # queue的后缀,带业务含义
           contentType: application/json

@@ -93,7 +93,7 @@ public class SpringDubbo4RestServiceController implements RestService {
 	public User requestBodyMap(@RequestBody Map<String, Object> data,
 							   @RequestParam("param") String param) {
 		User user = new User();
-		user.setId(((Integer) data.get("id")).longValue());
+		user.setUserId(((Integer) data.get("id")).longValue());
 		user.setName((String) data.get("name"));
 		user.setAge((Integer) data.get("age"));
 		LoggerUtils.log(logger,"/request/body/map", user);
@@ -105,7 +105,7 @@ public class SpringDubbo4RestServiceController implements RestService {
 	@PostMapping(value = "/request/body/user", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Map<String, Object> requestBodyUser(@RequestBody User user) {
 		Map<String, Object> map = new HashMap<>();
-		map.put("id", user.getId());
+		map.put("id", user.getUserId());
 		map.put("name", user.getName());
 		map.put("age", user.getAge());
 		LoggerUtils.log(logger,"/request/body/user", map);

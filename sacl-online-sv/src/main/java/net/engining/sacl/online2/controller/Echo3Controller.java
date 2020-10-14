@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiOperation;
 import net.engining.sacl.online2.bus.GenericRemoteApplicationEvent;
+import net.engining.sacl.online2.bus.SaclStreamHandler;
 import net.engining.sacl.online2.bus.User;
 import net.engining.sacl.online2.bus.UserRemoteApplicationEvent;
 import org.slf4j.Logger;
@@ -45,6 +46,9 @@ public class Echo3Controller {
     @Autowired
     private ApplicationEventPublisher publisher;
 
+    @Autowired
+    private SaclStreamHandler saclStreamHandler;
+
     /**
      * consumer端的ServiceId
      */
@@ -54,7 +58,7 @@ public class Echo3Controller {
     @PostMapping("/publish/user")
     public boolean publish(@RequestParam String name) {
         User user = new User();
-        user.setId(System.currentTimeMillis());
+        user.setUserId(System.currentTimeMillis());
         user.setName(name);
         user.setAge(RandomUtil.randomInt(1, 100));
         publisher.publishEvent(
@@ -67,7 +71,7 @@ public class Echo3Controller {
     @PostMapping("/publish/user2")
     public boolean publish2(@RequestParam String name) {
         User user = new User();
-        user.setId(System.currentTimeMillis());
+        user.setUserId(System.currentTimeMillis());
         user.setName(name);
         user.setAge(RandomUtil.randomInt(1, 100));
         publisher.publishEvent(
@@ -79,7 +83,7 @@ public class Echo3Controller {
     @ApiOperation(value = "test for stream", notes = "")
     @PostMapping("/publish/user3")
     public boolean publish3(@RequestParam String name) {
-
+        saclStreamHandler.sentUser(name);
         return true;
     }
 

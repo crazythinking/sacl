@@ -9,9 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.bus.BusProperties;
+import org.springframework.cloud.bus.SpringCloudBusClient;
 import org.springframework.cloud.bus.event.AckRemoteApplicationEvent;
 import org.springframework.cloud.bus.event.RemoteApplicationEvent;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.context.event.EventListener;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,7 +25,8 @@ import org.springframework.stereotype.Service;
  * @date : 2020-09-11 12:22
  * @since :
  **/
-@Service
+@EnableBinding(SpringCloudBusClient.class)
+@Component
 public class UserMsgListener {
 
     /** logger */
@@ -31,6 +37,11 @@ public class UserMsgListener {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @StreamListener(SpringCloudBusClient.INPUT)
+    public void receive(@Payload GenericRemoteApplicationEvent<User> event){
+        LOGGER.debug(JSON.toJSONString(event));
+    }
 
     @EventListener
     public void onEvent(UserRemoteApplicationEvent event) {

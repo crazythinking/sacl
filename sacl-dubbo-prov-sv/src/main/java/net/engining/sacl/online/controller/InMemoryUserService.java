@@ -33,7 +33,7 @@ public class InMemoryUserService implements UserService {
 
 	@Override
 	public boolean save(User user) {
-		return usersRepository.put(user.getId(), user) == null;
+		return usersRepository.put(user.getUserId(), user) == null;
 	}
 
 	@Override
