@@ -1,15 +1,15 @@
 spring:
   cloud:
-    bus:
-      ack:
-        enabled: true
-      enabled: true
-      env:
-        enabled: false
-      refresh:
-        enabled: false
-      trace:
-        enabled: true
+#    bus:
+#      ack:
+#        enabled: true
+#      enabled: true
+#      env:
+#        enabled: false
+#      refresh:
+#        enabled: false
+#      trace:
+#        enabled: true
     stream:
       binders:
         rabbitCluster:

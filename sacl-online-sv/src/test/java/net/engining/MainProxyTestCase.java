@@ -5,12 +5,20 @@ import java.lang.reflect.Proxy;
 public class MainProxyTestCase {
 	
 	public void serviceA(Foo fooImpl) {
-		Foo foo = (Foo) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class[] {Foo.class}, new FooProxy(fooImpl));
+		Foo foo = (Foo) Proxy.newProxyInstance(
+				Thread.currentThread().getContextClassLoader(),
+				new Class[] {Foo.class},
+				new FooProxy(fooImpl)
+		);
 		foo.mb();
 	}
 	
 	public void serviceB(Foo fooImpl) {
-		Foo foo = (Foo) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class[] {Foo.class}, new FooProxy(fooImpl));
+		Foo foo = (Foo) Proxy.newProxyInstance(
+				Thread.currentThread().getContextClassLoader(),
+				new Class[] {Foo.class},
+				new FooProxy(fooImpl)
+		);
 		foo.mb();
 	}
 	

@@ -1,15 +1,15 @@
 spring:
   cloud:
-    bus:
-      ack:
-        enabled: true
-      enabled: true
-      env:
-        enabled: false
-      refresh:
-        enabled: false
-      trace:
-        enabled: true
+#    bus:
+#      ack:
+#        enabled: true
+#      enabled: true
+#      env:
+#        enabled: false
+#      refresh:
+#        enabled: false
+#      trace:
+#        enabled: true
     stream:
       binders:
         rabbitCluster:
@@ -56,7 +56,7 @@ spring:
 #              republishDeliveryMode: DeliveryMode.PERSISTENT # 默认DeliveryMode.PERSISTENT（持久化）。当republishToDlq为true时，转发的消息的delivery mode
       bindings:
 #        input: # binding的key为input
-#          binder: rabbitCluster
+#          binder: rabbitCluster # 此处可以不同于default-binder
 #          destination: sacl.exchange1
 #          group: saclGroup
 #          contentType: application/json
@@ -71,7 +71,7 @@ spring:
 #          group: saclGroup
 #          contentType: application/json
         springCloudBusInput:
-#          binder: rabbitCluster
+#          binder: rabbitCluster # 此处可以不同于default-binder
           destination: sacl-dubbo-prov-sv.exchange1 # exchange 用生产者的applicationName做前缀
           group: repayBack # queue的后缀,带业务含义
           contentType: application/json
@@ -84,3 +84,7 @@ spring:
           destination: ${spring.application.name}.exchange1 # exchange的前缀,生产者的applicationName
           group: makeLoan # queue的后缀,带业务含义
           contentType: application/json
+          #消息生产者的分区设置
+          producer:
+            partitionKeyExpression: payload.userId #分区键
+#            partitionKeyExpression: headers.id #分区键

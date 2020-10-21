@@ -106,7 +106,7 @@ public class Echo3Controller {
     @RequestMapping(value="/{target}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void send(@RequestBody String body, @PathVariable("target") String target){
-        resolver.resolveDestination(target).send(new GenericMessage<String>(body));
+        resolver.resolveDestination(target).send(new GenericMessage<>(body));
     }
 
 }

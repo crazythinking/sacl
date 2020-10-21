@@ -1,14 +1,21 @@
 package net.engining.sacl.online;
 
+import com.alibaba.fastjson.JSON;
 import net.engining.gm.config.*;
 import net.engining.sacl.config.Only4ActuatorWebSecurityExtContextConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import net.engining.gm.config.props.GmCommonProperties;
 import net.engining.pg.param.props.PgParamAndCacheProperties;
 import net.engining.pg.props.CommonProperties;
+import org.springframework.integration.annotation.ServiceActivator;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.ErrorMessage;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -35,6 +42,17 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		Only4ActuatorWebSecurityExtContextConfig.class
 		})
 public class CombineConfiguration {
-	
-	
+
+	/** logger */
+	private static final Logger log = LoggerFactory.getLogger(CombineConfiguration.class);
+
+	/**
+	 * 全局统一的 Stream message Handler 异常处理
+	 * @param message
+	 */
+	@StreamListener("errorChannel")
+	public void error(Message<?> message) {
+		ErrorMessage errorMessage = (ErrorMessage) message;
+		log.warn("Handling ERROR: " + errorMessage.getPayload().getMessage());
+	}
 }

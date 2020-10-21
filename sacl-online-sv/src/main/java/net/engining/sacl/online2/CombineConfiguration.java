@@ -1,5 +1,6 @@
 package net.engining.sacl.online2;
 
+import com.alibaba.fastjson.JSON;
 import net.engining.gm.config.GeneralContextConfig;
 import net.engining.gm.config.JPAContextConfig;
 import net.engining.gm.config.SnowflakeSequenceIDContextConfig;
@@ -10,12 +11,15 @@ import net.engining.gm.config.props.GmCommonProperties;
 import net.engining.pg.param.props.PgParamAndCacheProperties;
 import net.engining.pg.props.CommonProperties;
 import net.engining.sacl.config.Only4ActuatorWebSecurityExtContextConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Processor;
+import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.ErrorMessage;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -47,9 +51,21 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 				"net.engining.pg.parameter.entity",
 		})
 public class CombineConfiguration {
+	/** logger */
+	private static final Logger log = LoggerFactory.getLogger(CombineConfiguration.class);
 
 //	@Bean
 //	public Request.Options options(){
 //		return new Request.Options(2000,1000);
 //	}
+
+	/**
+	 * 全局统一的 Stream message Handler 异常处理
+	 * @param message
+	 */
+	@StreamListener("errorChannel")
+	public void error(Message<?> message) {
+		ErrorMessage errorMessage = (ErrorMessage) message;
+		log.warn("Handling ERROR: " + errorMessage.getPayload().getMessage());
+	}
 }

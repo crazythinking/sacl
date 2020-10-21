@@ -33,7 +33,7 @@ public class Main {
 //		);
 
 		Map<String, String> params = Maps.newHashMap();
-		params.put("BATCH_DATE", "2003-01-01");
+		params.put("BATCH_DATE", "2003-01-02");
 		kettleManagerService.runJobFromRepository(
 				"ODS_INDEX",
 				"kjb1",
