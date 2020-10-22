@@ -12,11 +12,13 @@ import net.engining.pg.param.props.PgParamAndCacheProperties;
 import net.engining.pg.props.CommonProperties;
 import net.engining.pg.security.props.PgSecurityProperties;
 import net.engining.sacl.config.PreferentiallyDependentContextConfig;
+import net.engining.smartstar.config.listener.AuthenticationSuccessEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.messaging.Message;
@@ -71,5 +73,10 @@ public class CombineConfiguration {
 	public void error(Message<?> message) {
 		ErrorMessage errorMessage = (ErrorMessage) message;
 		log.warn("Handling ERROR: " + errorMessage.getPayload().getMessage());
+	}
+
+	@Bean
+	public AuthenticationSuccessEventListener authenticationSuccessEventListener(){
+		return new AuthenticationSuccessEventListener();
 	}
 }

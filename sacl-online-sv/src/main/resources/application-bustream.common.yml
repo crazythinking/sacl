@@ -54,6 +54,12 @@ spring:
 #              dlqTtl: 1000000 # 队列的消息的过期时间. 默认不限制
 #              republishToDlq: true # 默认false。当为true时，死信队列接收到的消息的headers会更加丰富，多了异常信息和堆栈跟踪
 #              republishDeliveryMode: DeliveryMode.PERSISTENT # 默认DeliveryMode.PERSISTENT（持久化）。当republishToDlq为true时，转发的消息的delivery mode
+          msgInput:
+            consumer:
+              exchangeType: direct # 指定Exchange类型,默认topic
+              bindQueue: true # 不使用SpringCloud提供的自动绑定Queue到Exchange的规则,默认true
+              queueNameGroupOnly: true # 完全比配spring.cloud.stream.bindings.<binding name>.group的值,默认false
+              declareExchange: false # 不使用SpringCloud提供的自动声明Exchange,默认true
       bindings:
 #        input: # binding的key为input
 #          binder: rabbitCluster # 此处可以不同于default-binder
@@ -70,6 +76,10 @@ spring:
 #          destination: sacl.exchange2
 #          group: saclGroup
 #          contentType: application/json
+        msgInput:
+          destination: amq.direct
+          group: vipMakeLoan
+          contentType: text/plain
         msgOutput:
           destination: ${spring.application.name}.exchange1 # exchange的前缀,生产者的applicationName
           group: pollMakeLoan # queue的后缀,带业务含义
