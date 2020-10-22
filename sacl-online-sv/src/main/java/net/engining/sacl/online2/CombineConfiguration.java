@@ -1,6 +1,5 @@
 package net.engining.sacl.online2;
 
-import com.alibaba.fastjson.JSON;
 import net.engining.gm.config.GeneralContextConfig;
 import net.engining.gm.config.JPAContextConfig;
 import net.engining.gm.config.SnowflakeSequenceIDContextConfig;
@@ -8,9 +7,11 @@ import net.engining.gm.config.Swagger2ContextConfig;
 import net.engining.gm.config.WebContextConfig;
 import net.engining.gm.config.WebMvcExtContextConfig;
 import net.engining.gm.config.props.GmCommonProperties;
+import net.engining.gm.config.security.ActuatorWebSecurityConfigurerAdapter;
 import net.engining.pg.param.props.PgParamAndCacheProperties;
 import net.engining.pg.props.CommonProperties;
-import net.engining.sacl.config.Only4ActuatorWebSecurityExtContextConfig;
+import net.engining.pg.security.props.PgSecurityProperties;
+import net.engining.sacl.config.PreferentiallyDependentContextConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -36,6 +37,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		CommonProperties.class,
 		PgParamAndCacheProperties.class,
 		GmCommonProperties.class,
+		PgSecurityProperties.class
 		})
 @Import(value = {
 		GeneralContextConfig.class,
@@ -43,7 +45,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		Swagger2ContextConfig.class,
 		WebContextConfig.class,
 		WebMvcExtContextConfig.class,
-		Only4ActuatorWebSecurityExtContextConfig.class,
+		PreferentiallyDependentContextConfig.class,
+		//微服务本地监控端点的安全控制
+		ActuatorWebSecurityConfigurerAdapter.class,
 		SnowflakeSequenceIDContextConfig.class,
 		})
 @EntityScan(

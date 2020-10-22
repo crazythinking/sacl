@@ -96,10 +96,18 @@ public class Echo3Controller {
         return true;
     }
 
+    @ApiOperation(value = "Foo test for stream", notes = "")
+    @PostMapping("/publish/foo")
+    public boolean publish4(@RequestParam String f1) {
+        saclStreamHandler.sentFoo(f1);
+        return true;
+    }
+
     @EventListener
     public void onAckEvent(AckRemoteApplicationEvent event)
             throws JsonProcessingException {
-        LOGGER.info("Server [port : {}] listeners on {}", serverProperties.getPort(),
+        LOGGER.info(
+                "Server [port : {}] listeners on {}", serverProperties.getPort(),
                 objectMapper.writeValueAsString(event));
     }
 

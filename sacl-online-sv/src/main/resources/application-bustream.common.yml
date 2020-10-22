@@ -70,6 +70,10 @@ spring:
 #          destination: sacl.exchange2
 #          group: saclGroup
 #          contentType: application/json
+        msgOutput:
+          destination: ${spring.application.name}.exchange1 # exchange的前缀,生产者的applicationName
+          group: pollMakeLoan # queue的后缀,带业务含义
+          contentType: application/json
         springCloudBusInput:
 #          binder: rabbitCluster # 此处可以不同于default-binder
           destination: sacl-dubbo-prov-sv.exchange1 # exchange 用生产者的applicationName做前缀

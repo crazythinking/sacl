@@ -5,24 +5,28 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.engining.pg.support.core.exception.ErrorCode;
 import net.engining.pg.support.core.exception.ErrorMessageException;
+import net.engining.sacl.config.bus.StreamInOutChannel;
+import net.engining.sacl.config.bus.StreamPollableInput;
+import net.engining.sacl.online.service.Foo;
 import net.engining.sacl.online.service.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.cloud.bus.BusProperties;
 import org.springframework.cloud.bus.SpringCloudBusClient;
 import org.springframework.cloud.bus.event.AckRemoteApplicationEvent;
-import org.springframework.cloud.bus.event.RemoteApplicationEvent;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.binder.PollableMessageSource;
 import org.springframework.context.event.EventListener;
-import org.springframework.integration.annotation.ServiceActivator;
-import org.springframework.messaging.Message;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.integration.StaticMessageHeaderAccessor;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.support.ErrorMessage;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 /**
  * @author : Eric Lu
@@ -30,11 +34,16 @@ import org.springframework.stereotype.Service;
  * @date : 2020-09-11 12:22
  * @since :
  **/
-@EnableBinding(SpringCloudBusClient.class)
+@EnableBinding({
+        SpringCloudBusClient.class,
+        StreamPollableInput.class
+})
 @Component
 public class UserMsgListener {
 
-    /** logger */
+    /**
+     * logger
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(UserMsgListener.class);
 
     @Autowired
@@ -43,13 +52,32 @@ public class UserMsgListener {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    @Qualifier(StreamPollableInput.POLLINPUT)
+    private PollableMessageSource pollableMessageSource;
+
+    @Scheduled(fixedDelay = 5000)
+    public void pollMessage() {
+        boolean rt = pollableMessageSource.poll(
+                handler -> {
+                    UUID id = StaticMessageHeaderAccessor.getId(handler);
+                    Foo user2 = (Foo) handler.getPayload();
+                    LOGGER.debug("MsgId:{}, body:{}", id, JSON.toJSONString(user2));
+                },
+                new ParameterizedTypeReference<Foo>() {
+                }
+        );
+
+        LOGGER.debug("poll message process state: {}", rt);
+    }
+
     @StreamListener(value = SpringCloudBusClient.INPUT, condition = "headers['gender']==1")
-    public void receive(@Payload User event){
+    public void receive(@Payload User event) {
         LOGGER.debug(JSON.toJSONString(event));
     }
 
     @StreamListener(value = SpringCloudBusClient.INPUT, condition = "headers['gender']!=1")
-    public void receive2(@Payload User event){
+    public void receive2(@Payload User event) {
         throw new ErrorMessageException(ErrorCode.CheckError, "test");
     }
 
