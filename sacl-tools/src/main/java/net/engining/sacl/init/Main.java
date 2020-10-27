@@ -3,6 +3,7 @@ package net.engining.sacl.init;
 import com.google.common.collect.Maps;
 import net.engining.sacl.init.kettle.KettleManagerService;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
@@ -10,7 +11,7 @@ public class Main {
 	public static void main(String[] args) throws Exception{
 
 		KettleManagerService kettleManagerService = new KettleManagerService(
-				"D:\\workspaces\\sacl\\sacl-tools\\src\\main\\resources\\",
+				"C:\\Cache\\CSII\\csii\\shangcheng\\sacl\\sacl-tools\\src\\main\\resources\\",
 				"KettleFileRepository",
 				"test",
 				"detail"
@@ -18,7 +19,7 @@ public class Main {
 
 //		kettleManagerService.runTransformationFromFile(
 //				"test_num.ktr",
-//				Maps.newHashMap()
+//				new HashMap<>()
 //				);
 //
 //		kettleManagerService.runJobFromFile(
@@ -26,11 +27,11 @@ public class Main {
 //				Maps.newHashMap()
 //		);
 
-//		kettleManagerService.runJobFromRepository(
-//				"test_repo",
-//				null,
-//				Maps.newHashMap()
-//		);
+		kettleManagerService.runJobFromRepository(
+				"test_repo",
+				null,
+				Maps.newHashMap()
+		);
 
 		Map<String, String> params = Maps.newHashMap();
 		params.put("BATCH_DATE", "2003-01-01");
