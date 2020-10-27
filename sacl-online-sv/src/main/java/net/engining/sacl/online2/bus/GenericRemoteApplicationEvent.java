@@ -5,6 +5,7 @@ import org.springframework.cloud.bus.event.RemoteApplicationEvent;
 /**
  * {@link RemoteApplicationEvent} for Supporting Generic
  *
+ * @author Eric Lu
  */
 public class GenericRemoteApplicationEvent<T> extends RemoteApplicationEvent {
 

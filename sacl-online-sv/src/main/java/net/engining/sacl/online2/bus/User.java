@@ -8,39 +8,44 @@ package net.engining.sacl.online2.bus;
  */
 public class User {
 
-	private Long id;
+    /**
+     * spring cloud bus 会默认构造RemoteApplicationEvent，其中已包含id字段，因此payload不能使用再有id作为字段；
+     * 容易引起json转换时的冲突；
+     */
+    //private Long id;
+    private Long userId;
 
-	private String name;
+    private String name;
 
-	private Integer age;
+    private Integer age;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getUserId() {
+        return userId;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Integer getAge() {
-		return age;
-	}
+    public Integer getAge() {
+        return age;
+    }
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
-	@Override
-	public String toString() {
-		return "User{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + '}';
-	}
+    @Override
+    public String toString() {
+        return "User{" + "id=" + userId + ", name='" + name + '\'' + ", age=" + age + '}';
+    }
 
 }

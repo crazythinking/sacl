@@ -6,7 +6,9 @@ import org.pentaho.di.core.Const;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.Result;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.logging.KettleLogStore;
 import org.pentaho.di.core.logging.LogLevel;
+import org.pentaho.di.core.logging.LoggingBuffer;
 import org.pentaho.di.core.plugins.PluginRegistry;
 import org.pentaho.di.core.plugins.RepositoryPluginType;
 import org.pentaho.di.job.Job;
@@ -120,6 +122,13 @@ public class KettleManagerService {
         // The JobMeta object is the programmatic representation of a job definition.
         String jobFilePath = kettleRepoPath + File.separator + jobName;
         JobMeta jm = new JobMeta(jobFilePath, null);
+        if (params != null) {
+            Iterator<Map.Entry<String, String>> entries = params.entrySet().iterator();
+            while (entries.hasNext()) {
+                Map.Entry<String, String> entry = entries.next();
+                jm.setParameterValue(entry.getKey(), entry.getValue());
+            }
+        }
 
         // Creating a Job object which is the programmatic representation of a job
         // A Job object can be executed, report success, etc.
@@ -127,14 +136,6 @@ public class KettleManagerService {
 
         // adjust the log level
         job.setLogLevel(this.getLogerLevel(kettleLogLevel));
-
-        if (params != null) {
-            Iterator<Map.Entry<String, String>> entries = params.entrySet().iterator();
-            while (entries.hasNext()) {
-                Map.Entry<String, String> entry = entries.next();
-                job.setVariable(entry.getKey(), entry.getValue());
-            }
-        }
 
         // starting the job thread, which will execute asynchronously
         job.start();
@@ -220,16 +221,20 @@ public class KettleManagerService {
             jobMeta = repository.loadJob(jobName, tree, null, null);
         }
 
+        if (params != null) {
+            Iterator<Map.Entry<String, String>> entries = params.entrySet().iterator();
+            while (entries.hasNext()) {
+                Map.Entry<String, String> entry = entries.next();
+                jobMeta.setParameterValue(entry.getKey(), entry.getValue());
+            }
+        }
+
         // Creating a Job object which is the programmatic representation of a job
         // A Job object can be executed, report success, etc.
         Job job = new Job(repository, jobMeta);
 
         // adjust the log level
         job.setLogLevel(this.getLogerLevel(kettleLogLevel));
-
-        for (String key : params.keySet()) {
-            job.setVariable(key, params.get(key));
-        }
 
         // starting the job, which will execute asynchronously
         job.start();
