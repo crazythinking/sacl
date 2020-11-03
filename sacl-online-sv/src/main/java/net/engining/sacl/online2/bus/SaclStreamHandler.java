@@ -2,8 +2,6 @@ package net.engining.sacl.online2.bus;
 
 import cn.hutool.core.util.RandomUtil;
 import com.google.common.collect.Maps;
-import net.engining.sacl.config.bus.StreamInput;
-import net.engining.sacl.config.bus.StreamOutput;
 import net.engining.sacl.online2.controller.Foo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.bus.SpringCloudBusClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.SubscribableChannel;
@@ -29,9 +28,7 @@ import java.util.Map;
  **/
 @EnableBinding({
         SpringCloudBusClient.class,
-        StreamOutput.class,
-        StreamInput.class
-        //Processor.class
+        Processor.class
 })
 @Component
 public class SaclStreamHandler {
@@ -48,7 +45,7 @@ public class SaclStreamHandler {
     SubscribableChannel subscribableChannel;
 
     @Autowired
-    @Qualifier(StreamOutput.OUTPUT)
+    @Qualifier(Processor.OUTPUT)
     MessageChannel messageChannel1;
 
     public void sentUser(String name){
@@ -69,7 +66,7 @@ public class SaclStreamHandler {
         messageChannel1.send(MessageBuilder.createMessage(foo, new MessageHeaders(headerMap)));
     }
 
-    @StreamListener(StreamInput.INPUT)
+    @StreamListener(Processor.INPUT)
     public void received(String msg){
         log.debug(msg);
     }

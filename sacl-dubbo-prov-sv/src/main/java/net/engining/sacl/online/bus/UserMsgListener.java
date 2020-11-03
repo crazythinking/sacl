@@ -53,7 +53,7 @@ public class UserMsgListener {
     private ObjectMapper objectMapper;
 
     @Autowired
-    @Qualifier(StreamPollableInput.POLLINPUT)
+    @Qualifier("pollableInput")
     private PollableMessageSource pollableMessageSource;
 
     @Scheduled(fixedDelay = 5000)

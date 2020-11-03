@@ -11,8 +11,8 @@ import org.springframework.cloud.stream.binder.PollableMessageSource;
  **/
 public interface StreamPollableInput {
 
-    String POLLINPUT = "msgPollableInput";
+    String POLLINPUT = "pollableInput";
 
     @Input(StreamPollableInput.POLLINPUT)
-    PollableMessageSource msgPollableInput();
+    PollableMessageSource pollableInput();
 }
