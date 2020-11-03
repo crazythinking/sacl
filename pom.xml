@@ -24,9 +24,7 @@
         <gm.version>1.6.0-SNAPSHOT</gm.version>
         <profile.version>4.0.3.RELEASE</profile.version>
 
-        <spring.cloud.alibaba.version>2.2.1.RELEASE</spring.cloud.alibaba.version>
-        <spring-cloud-netflix.version>2.2.5.RELEASE</spring-cloud-netflix.version>
-        <nepxion.discovery.plugin.version>6.3.1</nepxion.discovery.plugin.version>
+        <nepxion.discovery.plugin.version>6.3.3</nepxion.discovery.plugin.version>
         <spring.statemachine.version>2.2.0.RELEASE</spring.statemachine.version>
         <druid.spring.version>1.2.1</druid.spring.version>
         <swagger2.version>2.9.2</swagger2.version>
