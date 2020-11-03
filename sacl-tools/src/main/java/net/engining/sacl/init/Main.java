@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args) throws Exception{
 
 		KettleManagerService kettleManagerService = new KettleManagerService(
-				"C:\\Cache\\CSII\\csii\\shangcheng\\sacl\\sacl-tools\\src\\main\\resources\\",
+				"D:\\workspaces\\sacl\\sacl-tools\\src\\main\\resources\\",
 				"KettleFileRepository",
 				"test",
 				"detail"
