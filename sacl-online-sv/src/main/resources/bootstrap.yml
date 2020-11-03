@@ -19,15 +19,15 @@ spring:
         register-enabled: false
       config:
         enabled: false
-        group: sacl
-        ext-config:
-          - dataId: scsv.properties
-            group: DEFAULT_GROUP
-            refresh: true
-          - dataId: nacos.properties
-            group: DEFAULT_GROUP
-            refresh: true
-          - dataId: druid.properties
-            group: DEFAULT_GROUP
-            refresh: true
+#        group: sacl
+#        ext-config:
+#          - dataId: scsv.properties
+#            group: DEFAULT_GROUP
+#            refresh: true
+#          - dataId: nacos.properties
+#            group: DEFAULT_GROUP
+#            refresh: true
+#          - dataId: druid.properties
+#            group: DEFAULT_GROUP
+#            refresh: true
 
