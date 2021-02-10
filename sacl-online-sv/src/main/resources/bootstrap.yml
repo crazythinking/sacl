@@ -30,15 +30,5 @@ spring:
           - dataId: druid.properties
             group: DEFAULT_GROUP
             refresh: true
-    bus:
-      enabled: false
-      ack:
-        enabled: false
-      env:
-        enabled: false
-      refresh:
-        enabled: false
-      trace:
-        enabled: false
 
 

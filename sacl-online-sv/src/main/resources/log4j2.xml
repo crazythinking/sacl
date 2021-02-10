@@ -12,7 +12,7 @@
     <Appenders>
         <!-- 标准输出 -->
         <Console name="Console" target="SYSTEM_OUT">
-            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout disableAnsi="false" charset="UTF-8"
                            pattern="%highlight{[%-5level] [%d{DEFAULT}] [%pid] [%thread] [%traceId] [%MDC] ([%c{1.}:%line:%method]) %msg%n}{FATAL=Bright red, ERROR=Red, WARN=Bright yellow, INFO=Bright green, DEBUG=green, TRACE=cyan}"/>
         </Console>
@@ -82,8 +82,8 @@
         <!--<Logger name="org.springframework.boot" level="TRACE" additivity="true"/>-->
         <!--<Logger name="org.springframework.security" level="INFO" additivity="false"/>-->
         <!--<Logger name="org.springframework.integration" level="TRACE" additivity="true"/>-->
-        <Logger name="org.springframework.cloud.bus" level="TRACE" additivity="true"/>
-        <Logger name="org.springframework.cloud.stream" level="TRACE" additivity="true"/>
+        <!--<Logger name="org.springframework.cloud.bus" level="TRACE" additivity="true"/>-->
+        <!--<Logger name="org.springframework.cloud.stream" level="TRACE" additivity="true"/>-->
 
         <!--<Logger name="com.alibaba.cloud.sentinel" level="TRACE" additivity="true"/>-->
 

@@ -26,11 +26,11 @@ import java.util.Map;
  * @date : 2020-09-24 14:34
  * @since :
  **/
-@EnableBinding({
-        SpringCloudBusClient.class,
-        Processor.class
-})
-@Component
+//@EnableBinding({
+//        SpringCloudBusClient.class,
+//        Processor.class
+//})
+//@Component
 public class SaclStreamHandler {
 
     /** logger */
