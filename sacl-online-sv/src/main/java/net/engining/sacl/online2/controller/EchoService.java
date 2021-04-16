@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 
-@Service
+//@Service
 public class EchoService {
     /** logger */
     private static final Logger log = LoggerFactory.getLogger(EchoService.class);

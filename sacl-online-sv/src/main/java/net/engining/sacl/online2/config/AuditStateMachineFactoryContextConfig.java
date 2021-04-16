@@ -38,7 +38,7 @@ import java.util.EnumSet;
  * @author Eric Lu
  * @create 2019-08-02 16:05
  **/
-@EnableStateMachineFactory(name = {AuditStateMachineFactoryContextConfig.AUDIT_STAT_MACHINE_FACTORY}, contextEvents = false)
+//@EnableStateMachineFactory(name = {AuditStateMachineFactoryContextConfig.AUDIT_STAT_MACHINE_FACTORY}, contextEvents = false)
 public class AuditStateMachineFactoryContextConfig extends EnumStateMachineConfigurerAdapter<AuditStates, AuditEvents> {
 
     /**logger*/

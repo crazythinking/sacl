@@ -20,8 +20,8 @@ import java.util.List;
  * @date : 2019-12-26 10:31
  * @since :
  **/
-@RestController
-@RequestMapping(value={"/statemachine"})
+//@RestController
+//@RequestMapping(value={"/statemachine"})
 public class Echo2Controller {
 
     @Autowired
