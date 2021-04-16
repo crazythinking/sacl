@@ -26,7 +26,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
         Sao.class
 })
 @EnableCircuitBreaker
-@RemoteApplicationEventScan(basePackages = "net.engining.sacl.online2.bus")
+//@RemoteApplicationEventScan(basePackages = "net.engining.sacl.online2.bus")
 @SpringBootApplication(exclude = {
         ArchaiusAutoConfiguration.class
 })

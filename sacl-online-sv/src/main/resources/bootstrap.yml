@@ -5,6 +5,14 @@ info:
 spring:
   application:
     name: sacl-online-sv
+  statemachine:
+    data:
+      jpa:
+        repositories:
+          enabled: false
+      redis:
+        repositories:
+          enabled: false
   cloud:
     #默认注册中心disable，这里是为了可以通过profile切换不同注册中心
     zookeeper:
@@ -30,5 +38,8 @@ spring:
           - dataId: druid.properties
             group: DEFAULT_GROUP
             refresh: true
+    bus:
+      enabled: false
+
 
 

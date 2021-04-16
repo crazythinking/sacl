@@ -20,8 +20,8 @@ import java.util.List;
 /**
  * @author Eric Lu
  */
-@RestController
-@RequestMapping(value={"/learnNacos"})
+//@RestController
+//@RequestMapping(value={"/learnNacos"})
 public class EchoController {
 
 	@Autowired

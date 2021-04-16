@@ -32,8 +32,8 @@ import java.util.Map;
  * @date : 2019-12-26 10:31
  * @since :
  **/
-@RestController
-@RequestMapping(value={"/bus"})
+//@RestController
+//@RequestMapping(value={"/bus"})
 public class Echo3Controller {
 
     /** logger */

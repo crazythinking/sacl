@@ -1,5 +1,6 @@
 package net.engining.sacl.online2;
 
+import net.engining.gm.config.AsyncExtContextConfig;
 import net.engining.gm.config.GeneralContextConfig;
 import net.engining.gm.config.JPAContextConfig;
 import net.engining.gm.config.SnowflakeSequenceIDContextConfig;
@@ -21,8 +22,16 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.ErrorMessage;
+import org.springframework.retry.annotation.EnableRetry;
+import org.springframework.retry.backoff.FixedBackOffPolicy;
+import org.springframework.retry.policy.SimpleRetryPolicy;
+import org.springframework.retry.support.RetryTemplate;
+import org.springframework.statemachine.data.jpa.JpaStateRepository;
+import org.springframework.statemachine.data.redis.RedisStateRepository;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -43,6 +52,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		})
 @Import(value = {
 		GeneralContextConfig.class,
+		AsyncExtContextConfig.class,
 		JPAContextConfig.class,
 		Swagger2ContextConfig.class,
 		WebContextConfig.class,
@@ -55,6 +65,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EntityScan(
 		basePackages = {
 				"net.engining.pg.parameter.entity",
+				"org.springframework.statemachine.data.jpa",
+				"org.springframework.statemachine.data.redis",
+		})
+@EnableJpaRepositories(
+		basePackageClasses = {
+				JpaStateRepository.class,
+		})
+@EnableRedisRepositories(
+		basePackageClasses = {
+				RedisStateRepository.class,
 		})
 public class CombineConfiguration {
 	/** logger */
@@ -79,4 +99,5 @@ public class CombineConfiguration {
 	public AuthenticationSuccessEventListener authenticationSuccessEventListener(){
 		return new AuthenticationSuccessEventListener();
 	}
+
 }

@@ -10,23 +10,23 @@ import org.springframework.statemachine.annotation.WithStateMachine;
  * @create 2019-08-02 17:53
  **/
 
-@WithStateMachine(id = AuditStateMachineBuilder.STATE_MACHINE_ID)
-public class AuditEventConfig {
+//@WithStateMachine(name = "audit-stat-machine-1")
+public class AuditStateMachine {
 
     /** logger */
-    private static final Logger log = LoggerFactory.getLogger(AuditEventConfig.class);
+    private static final Logger log = LoggerFactory.getLogger(AuditStateMachine.class);
 
-    @OnTransition(target = "P")
+    //@OnTransition(target = "P")
     public void start(){
         log.debug("------------初始，待处理");
     }
 
-    @OnTransition(source = "P", target = "B")
+    //@OnTransition(source = "P", target = "B")
     public void process(){
         log.debug("------------开始处理");
     }
 
-    @OnTransition(source = "B", target = "F")
+    //@OnTransition(source = "B", target = "F")
     public void end(){
         log.debug("------------完成处理");
     }

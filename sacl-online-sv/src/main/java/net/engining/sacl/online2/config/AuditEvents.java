@@ -7,11 +7,13 @@ import net.engining.pg.support.enums.BaseEnum;
  */
 public enum AuditEvents implements BaseEnum<String> {
 
-    /** 开始处理 */	P("P","开始处理"),
+    /** 开始处理 */
+    DOING("P","开始处理"),
+
     /**
      * 完成处理
      */
-    B("B", "完成处理");
+    COMPLETE("B", "完成处理");
 
     private final String value;
 

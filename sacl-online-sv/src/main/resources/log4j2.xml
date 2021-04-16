@@ -12,7 +12,7 @@
     <Appenders>
         <!-- 标准输出 -->
         <Console name="Console" target="SYSTEM_OUT">
-            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout disableAnsi="false" charset="UTF-8"
                            pattern="%highlight{[%-5level] [%d{DEFAULT}] [%pid] [%thread] [%traceId] [%MDC] ([%c{1.}:%line:%method]) %msg%n}{FATAL=Bright red, ERROR=Red, WARN=Bright yellow, INFO=Bright green, DEBUG=green, TRACE=cyan}"/>
         </Console>
@@ -78,6 +78,9 @@
         <Logger name="net.engining" level="TRACE" additivity="true"/>
 
         <Logger name="org.springframework" level="INFO" additivity="true"/>
+        <!--<Logger name="org.springframework.statemachine" level="TRACE" additivity="true"/>-->
+        <!--<Logger name="org.springframework.retry" level="TRACE" additivity="true"/>-->
+        <!--<Logger name="org.springframework.data" level="TRACE" additivity="true"/>-->
         <!--<Logger name="org.springframework.web" level="INFO" additivity="false"/>-->
         <!--<Logger name="org.springframework.boot" level="TRACE" additivity="true"/>-->
         <!--<Logger name="org.springframework.security" level="INFO" additivity="false"/>-->

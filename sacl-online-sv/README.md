@@ -15,3 +15,9 @@ dev,rabbit.common,rabbit.dev,bus.disable,bustream.rabbit.binders,stream.common.b
 
 #服务开启总线模式
 dev,rabbit.common,rabbit.dev,bus.enable,bustream.rabbit.binders,bus.common.bindings.output,bus.common.bindings.input,bus.rabbit.bindings.output,bus.rabbit.bindings.input,bus.common
+
+#statemachine jpa
+dev,statemachine.jpa,druid.common,druid.mysql.dev
+
+#statemachine redis
+dev,statemachine.redis,redis.dev

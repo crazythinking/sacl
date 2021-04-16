@@ -3,7 +3,7 @@ package net.engining.sacl.online2.state.persist;
 import net.engining.pg.parameter.entity.dto.ParameterAuditDto;
 import net.engining.pg.parameter.entity.enums.AuditOptDef;
 import net.engining.sacl.online2.config.AuditEvents;
-import net.engining.sacl.online2.config.AuditStateMachineBuilder;
+import net.engining.sacl.online2.config.AuditStateMachineFactoryContextConfig;
 import net.engining.sacl.online2.config.AuditStates;
 import org.springframework.statemachine.StateMachineContext;
 import org.springframework.statemachine.StateMachinePersist;
@@ -52,7 +52,7 @@ public class AuditStateMachinePersist implements StateMachinePersist<AuditStates
                         null,
                         null,
                         null,
-                        AuditStateMachineBuilder.STATE_MACHINE_ID
+                        AuditStateMachineFactoryContextConfig.AUDIT_STAT_MACHINE_1
                 );
         return result;
     }
