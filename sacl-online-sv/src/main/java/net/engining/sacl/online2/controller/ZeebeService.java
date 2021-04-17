@@ -55,7 +55,7 @@ public class ZeebeService {
      * 当Event到达时由Zeebe自身调用
      */
     @ZeebeWorker(type = "foo", name = "demoProcess-worker")
-    public void handleFooJob(final JobClient client, final ActivatedJob job) {
+    public void handleFooJob(final ActivatedJob job) {
         logJob(job);
         client.newCompleteCommand(job.getKey()).variables("{\"foo\": 1}").send().join();
     }
@@ -64,7 +64,7 @@ public class ZeebeService {
      * 当Event到达时由Zeebe自身调用
      */
     @ZeebeWorker(type = "bar", name = "demoProcess-worker")
-    public void handleBarJob(final JobClient client, final ActivatedJob job) {
+    public void handleBarJob(final ActivatedJob job) {
         logJob(job);
         client.newCompleteCommand(job.getKey()).send().join();
     }
