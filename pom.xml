@@ -273,6 +273,7 @@
                     <include>application.properties</include>
                     <include>application.yml</include>
                     <include>bootstrap.yml</include>
+                    <include>*.bpmn</include>
                 </includes>
             </resource>
         </resources>

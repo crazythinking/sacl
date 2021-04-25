@@ -87,7 +87,7 @@
         <!--<Logger name="org.springframework.integration" level="TRACE" additivity="true"/>-->
         <!--<Logger name="org.springframework.cloud.bus" level="TRACE" additivity="true"/>-->
         <!--<Logger name="org.springframework.cloud.stream" level="TRACE" additivity="true"/>-->
-
+        <Logger name="io.zeebe.client" level="TRACE" additivity="true"/>
         <!--<Logger name="com.alibaba.cloud.sentinel" level="TRACE" additivity="true"/>-->
 
         <!--
