@@ -3,6 +3,7 @@ package net.engining.sacl.online2.bus;
 import net.engining.bustream.base.stream.AbstractOutputBustreamHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -13,7 +14,8 @@ import java.util.Map;
  * @date : 2020-10-31 18:20
  * @since :
  **/
-//@Service
+@Profile("stream.common.bindings.output")
+@Service
 public class UserMsgOutputStreamHandler extends AbstractOutputBustreamHandler<User> {
 
     /** logger */

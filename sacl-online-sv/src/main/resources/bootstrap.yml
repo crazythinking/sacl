@@ -40,6 +40,8 @@ spring:
             refresh: true
     bus:
       enabled: false
+    sentinel:
+      enabled: false
 
 #zeebe:
 #  client:

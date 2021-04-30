@@ -11,6 +11,7 @@ import org.springframework.cloud.bus.SpringCloudBusClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Processor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.SubscribableChannel;
@@ -26,11 +27,12 @@ import java.util.Map;
  * @date : 2020-09-24 14:34
  * @since :
  **/
-//@EnableBinding({
-//        SpringCloudBusClient.class,
-//        Processor.class
-//})
-//@Component
+@Profile({"bus.enable", "stream.common.bindings.output", "stream.common.bindings.input"})
+@EnableBinding({
+        SpringCloudBusClient.class,
+        Processor.class
+})
+@Component
 public class SaclStreamHandler {
 
     /** logger */

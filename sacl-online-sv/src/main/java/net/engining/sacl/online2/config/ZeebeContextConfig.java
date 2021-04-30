@@ -2,6 +2,7 @@ package net.engining.sacl.online2.config;
 
 import io.zeebe.spring.client.EnableZeebeClient;
 import io.zeebe.spring.client.annotation.ZeebeDeployment;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -12,7 +13,10 @@ import org.springframework.context.annotation.Configuration;
  **/
 @Configuration
 @EnableZeebeClient
-@ZeebeDeployment(classPathResources = "demoProcess.bpmn")
+@ZeebeDeployment(classPathResources = {
+        "demoProcess.bpmn",
+        "order-process.bpmn"
+})
 public class ZeebeContextConfig {
 
 }

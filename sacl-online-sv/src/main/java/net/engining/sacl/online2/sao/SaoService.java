@@ -30,11 +30,12 @@ public class SaoService {
 
     public List<Foo> echo2() {
         FeignClientProperties.FeignClientConfiguration config = feignClientProperties.getConfig().get("echo-service");
-        String response = sao.echo2(
-//                new Request.Options(
-//                        feignHttpClientProperties.getConnectionTimeout(),
-//                        config.getReadTimeout()
-//                )
+        String response = sao.echo2();
+        String response1 = sao.echo2(
+                new Request.Options(
+                        feignHttpClientProperties.getConnectionTimeout(),
+                        config.getReadTimeout()
+                )
         );
 
         return JSON.parseArray(response, Foo.class);
