@@ -13,6 +13,7 @@ import net.engining.pg.param.props.PgParamAndCacheProperties;
 import net.engining.pg.props.CommonProperties;
 import net.engining.pg.security.props.PgSecurityProperties;
 import net.engining.sacl.config.PreferentiallyDependentContextConfig;
+import net.engining.sacl.online2.config.ZeebeContextConfig;
 import net.engining.smartstar.config.listener.AuthenticationSuccessEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,6 +62,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		//微服务本地监控端点的安全控制
 		ActuatorWebSecurityConfigurerAdapter.class,
 		SnowflakeSequenceIDContextConfig.class,
+		ZeebeContextConfig.class
 		})
 @EntityScan(
 		basePackages = {

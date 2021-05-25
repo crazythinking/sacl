@@ -1,6 +1,7 @@
 package net.engining.sacl.online2.controller;
 
 import io.swagger.annotations.ApiOperation;
+import net.engining.zeebe.spring.client.ext.ZeebeSimpleAdminHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,21 +19,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class ZeebeController {
 
     @Autowired
-    ZeebeService zeebeService;
+    DemoProcessStarterService demoProcessStarterService;
+
+    @Autowired
+    ZeebeSimpleAdminHandler zeebeSimpleAdminHandler;
 
     @ApiOperation(value = "test for zeebe, start process", notes = "")
     @PostMapping("/start")
     public boolean start() {
-        //zeebeService.startProcesses();
-        //zeebeService.startProcesses4Object();
-        zeebeService.startBlockProcesses4Object();
+        demoProcessStarterService.startProcess();
         return true;
     }
 
     @ApiOperation(value = "test for zeebe, get topology", notes = "")
     @GetMapping("/topology")
     public void topology() {
-        zeebeService.getTopology();
+        zeebeSimpleAdminHandler.getTopology();
     }
 
 }

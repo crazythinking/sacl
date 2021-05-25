@@ -42,15 +42,3 @@ spring:
       enabled: false
     sentinel:
       enabled: false
-
-#zeebe:
-#  client:
-#    broker:
-#      gateway-address: ubuntu.wsl:26500
-#    security:
-#      plaintext: true
-#    worker:
-#      default-name: demoProcess-worker
-
-
-

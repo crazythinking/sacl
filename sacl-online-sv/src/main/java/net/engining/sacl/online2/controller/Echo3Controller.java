@@ -1,12 +1,6 @@
 package net.engining.sacl.online2.controller;
 
-import cn.hutool.core.util.RandomUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Maps;
-import io.swagger.annotations.ApiOperation;
-import net.engining.bustream.base.bus.GenericRemoteApplicationEvent;
-import net.engining.sacl.online2.bus.User;
-import net.engining.sacl.online2.bus.UserMsgOutputStreamHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +11,9 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.support.GenericMessage;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
 
 /**
  * @author : Eric Lu
@@ -57,9 +46,6 @@ public class Echo3Controller {
     @Autowired
     private BinderAwareChannelResolver resolver;
 
-    @Autowired
-    UserMsgOutputStreamHandler userMsgOutputStreamHandler;
-
     /**
      * consumer端的ServiceId
      */
@@ -77,32 +63,6 @@ public class Echo3Controller {
 //        );
 //        return true;
 //    }
-
-    @ApiOperation(value = "test for bus, generic message", notes = "")
-    @PostMapping("/publish/user2")
-    public boolean publish2(@RequestParam String name) {
-        User user = new User();
-        user.setUserId(System.currentTimeMillis());
-        user.setName(name);
-        user.setAge(RandomUtil.randomInt(1, 100));
-        publisher.publishEvent(
-                new GenericRemoteApplicationEvent<User>(this, user, busProperties.getId(), destination)
-        );
-        return true;
-    }
-
-    @ApiOperation(value = "test for stream", notes = "")
-    @PostMapping("/publish/user3")
-    public boolean publish3(@RequestParam String name) {
-        User user = new User();
-        user.setUserId(System.currentTimeMillis());
-        user.setName(name);
-        user.setAge(RandomUtil.randomInt(1, 100));
-        Map<String, Object> headerMap = Maps.newHashMap();
-        headerMap.put("gender", user.getAge() % 2);
-        userMsgOutputStreamHandler.send(user, headerMap);
-        return true;
-    }
 
 //    @ApiOperation(value = "Foo test for stream", notes = "")
 //    @PostMapping("/publish/foo")

@@ -56,7 +56,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>-->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.apache.zookeeper</groupId>
 			<artifactId>zookeeper</artifactId>
 			<version>${zookeeper.version}</version>
@@ -70,7 +70,7 @@
 					<artifactId>log4j</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
+		</dependency>-->
 
 		<!-- 针对Nacos服务注册发现中心的nepxion扩展 -->
 		<!-- <dependency>
@@ -287,10 +287,11 @@
 			<artifactId>druid-spring-boot-starter</artifactId>
 		</dependency>
 
+		<!-- Zeebe -->
 		<dependency>
-			<groupId>io.zeebe.spring</groupId>
-			<artifactId>spring-zeebe-starter</artifactId>
-			<version>0.26.2</version>
+			<groupId>net.engining.starter</groupId>
+			<artifactId>zeebe-ext-spring-boot-starter</artifactId>
+			<version>${starter.version}</version>
 		</dependency>
 
 		<!-- 支持方法级验证 -->

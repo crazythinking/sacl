@@ -1,9 +1,8 @@
 package net.engining.sacl.online2.config;
 
-import io.zeebe.spring.client.EnableZeebeClient;
-import io.zeebe.spring.client.annotation.ZeebeDeployment;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+import io.camunda.zeebe.spring.client.annotation.ZeebeDeployment;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 /**
  * @author : Eric Lu
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
  * @since :
  **/
 @Configuration
-@EnableZeebeClient
 @ZeebeDeployment(classPathResources = {
         "demoProcess.bpmn",
         "order-process.bpmn"
