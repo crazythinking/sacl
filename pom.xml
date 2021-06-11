@@ -12,7 +12,7 @@
 
     <groupId>net.engining.sacl</groupId>
     <artifactId>sacl-parent</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -22,28 +22,28 @@
         <pg.version>3.7.0-SNAPSHOT</pg.version>
         <control.version>1.2.0-SNAPSHOT</control.version>
         <gm.version>1.6.0-SNAPSHOT</gm.version>
-        <profile.version>4.0.3.RELEASE</profile.version>
+        <profile.version>4.1.0-SNAPSHOT</profile.version>
+        <starter.version>2.0.0-SNAPSHOT</starter.version>
 
-        <nepxion.discovery.plugin.version>6.3.3</nepxion.discovery.plugin.version>
+        <nepxion.discovery.version>6.10.0</nepxion.discovery.version>
         <spring.statemachine.version>2.2.0.RELEASE</spring.statemachine.version>
-        <druid.spring.version>1.2.1</druid.spring.version>
         <swagger2.version>2.9.2</swagger2.version>
+        <!--<swagger3.version>3.0.0</swagger3.version>-->
         <swagger-project.version>1.5.22</swagger-project.version>
-        <xxljob.version>2.1.1.2.RELEASE</xxljob.version>
         <zookeeper.version>3.4.13</zookeeper.version>
         <jasypt.version>2.1.1</jasypt.version>
-        <sentinel.version>1.7.2</sentinel.version>
         <groovy.version>3.0.5</groovy.version>
+        <sentinel.version>1.8.0</sentinel.version>
     </properties>
 
     <modules>
         <module>sacl-config</module>
-        <module>sacl-dubbo-prov-sv</module>
+        <!--<module>sacl-dubbo-prov-sv</module>-->
         <module>sacl-online-sv</module>
-        <module>sacl-auth-sv</module>
-        <module>sacl-tools-component</module>
-        <module>sacl-tools</module>
-        <module>sacl-batch-executor-sv</module>
+        <!--<module>sacl-auth-sv</module>-->
+        <!--<module>sacl-tools-component</module>-->
+        <!--<module>sacl-tools</module>-->
+<!--        <module>sacl-batch-executor-sv</module>-->
     </modules>
 
     <dependencyManagement>
@@ -81,28 +81,18 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- druid -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid.spring.version}</version>
-            </dependency>
-
-            <!-- nepxion -->
-            <dependency>
-                <groupId>com.nepxion</groupId>
-                <artifactId>discovery</artifactId>
-                <version>${nepxion.discovery.plugin.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <!-- jasypt -->
             <dependency>
                 <groupId>com.github.ulisesbocchio</groupId>
                 <artifactId>jasypt-spring-boot-starter</artifactId>
                 <version>${jasypt.version}</version>
             </dependency>
+
+            <!--<dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${swagger3.version}</version>
+            </dependency>-->
 
             <dependency>
                 <groupId>io.springfox</groupId>
@@ -173,6 +163,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>net.engining.starter</groupId>
+                <artifactId>starter-parent</artifactId>
+                <version>${starter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
 
             <!-- 自身项目依赖 -->
@@ -184,7 +181,7 @@
             <dependency>
                 <groupId>net.engining.sacl</groupId>
                 <artifactId>sacl-tools-component</artifactId>
-                <version>0.1.0-SNAPSHOT</version>
+                <version>${sacl.version}</version>
             </dependency>
 
             <!-- spring boot 依赖的是5.1.47，其是针对mysql5.4之前的版本，目前基本都用5.6+的版本，根据mysql的官方的推荐使用8+的版本 -->
@@ -208,6 +205,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-properties-migrator</artifactId>
         </dependency>
 
     </dependencies>

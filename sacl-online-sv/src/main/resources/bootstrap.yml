@@ -19,17 +19,19 @@ spring:
         register-enabled: false
       config:
         enabled: false
+        #dev
+        server-addr: ubuntu.wsl:8888
         group: sacl
-        extension-configs[x]:
-          - dataId: scsv.properties
-            group: DEFAULT_GROUP
-            refresh: true
-          - dataId: nacos.properties
-            group: DEFAULT_GROUP
-            refresh: true
-          - dataId: druid.properties
-            group: DEFAULT_GROUP
-            refresh: true
+#        extension-configs[x]:
+#          - dataId: scsv.properties
+#            group: DEFAULT_GROUP
+#            refresh: true
+#          - dataId: nacos.properties
+#            group: DEFAULT_GROUP
+#            refresh: true
+#          - dataId: druid.properties
+#            group: DEFAULT_GROUP
+#            refresh: true
     bus:
       enabled: false
       ack:
@@ -40,5 +42,3 @@ spring:
         enabled: false
       trace:
         enabled: false
-
-

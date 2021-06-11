@@ -18,9 +18,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
  * @author Eric Lu
  * @create 2019-11-20 17:21
  **/
-@Configuration
-@EnableResourceServer
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@Configuration
+//@EnableResourceServer
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class OauthResourceServerExtContextConfig extends ResourceServerConfigurerAdapter {
 
     @Autowired

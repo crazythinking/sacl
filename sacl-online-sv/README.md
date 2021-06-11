@@ -5,5 +5,4 @@
 
 dev,druid.common,druid.mysql.dev,feign.common
 
-dev,bus.common,rabbit.common,rabbit.dev
-
+dev,db.common,db.hikari.common,db.hikari.mysql.dev,rabbit.common,rabbit.dev,bus.disable,bustream.rabbit.binders,stream.common.bindings.input,stream.common.bindings.output,stream.rabbit.bindings.input,stream.rabbit.bindings.output,stream.common,stream.dev

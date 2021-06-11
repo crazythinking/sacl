@@ -1,12 +1,14 @@
 package net.engining.sacl.online2.bus;
 
+import java.io.Serializable;
+
 /**
  * User Domain
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 0.2.1
  */
-public class User {
+public class User implements Serializable {
 
     /**
      * spring cloud bus 会默认构造RemoteApplicationEvent，其中已包含id字段，因此payload不能使用再有id作为字段；
