@@ -34,6 +34,7 @@
         <jasypt.version>2.1.1</jasypt.version>
         <groovy.version>3.0.5</groovy.version>
         <sentinel.version>1.8.0</sentinel.version>
+        <oracle.version>12.2.0.1.0</oracle.version>
     </properties>
 
     <modules>
@@ -189,6 +190,13 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>8.0.13</version><!--$NO-MVN-MAN-VER$ -->
+                <scope>runtime</scope>
+            </dependency>
+            <!-- oracle -->
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>oracle6</artifactId>
+                <version>${oracle.version}</version>
                 <scope>runtime</scope>
             </dependency>
 
