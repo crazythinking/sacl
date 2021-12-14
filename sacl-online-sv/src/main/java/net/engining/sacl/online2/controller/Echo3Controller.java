@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import net.engining.sacl.online2.bus.User;
 import net.engining.sacl.online2.bus.UserOutputStreamHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date : 2019-12-26 10:31
  * @since :
  **/
+@Profile("stream.common")
 @RestController
 @RequestMapping(value={"/bus"})
 public class Echo3Controller {

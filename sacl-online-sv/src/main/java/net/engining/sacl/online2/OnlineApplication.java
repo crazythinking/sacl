@@ -3,11 +3,9 @@ package net.engining.sacl.online2;
 import net.engining.sacl.online2.sao.Sao;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.bus.jackson.RemoteApplicationEventScan;
-import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.archaius.ArchaiusAutoConfiguration;
@@ -28,7 +26,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableCircuitBreaker
 @RemoteApplicationEventScan(basePackages = "net.engining.sacl.online2.bus")
 @SpringBootApplication(exclude = {
-        ArchaiusAutoConfiguration.class
+        ArchaiusAutoConfiguration.class,
+        //ScenarioSimulationKieServerAutoConfiguration.class
 })
 public class OnlineApplication extends SpringBootServletInitializer{
 	

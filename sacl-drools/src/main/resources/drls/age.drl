@@ -1,0 +1,26 @@
+package drls;
+
+import net.engining.sacl.drools.Person;
+
+global net.engining.pg.drools.beans.ResultBean resultBean;
+
+rule "children"
+    when
+        $p : Person(age > 1 && age < 19);
+    then
+        resultBean.getAdditionalRepMap().put("AgeClassification","child");
+    end
+
+rule "youngster"
+    when
+        $p : Person(age > 19 && age < 60);
+    then
+        resultBean.getAdditionalRepMap().put("AgeClassification","youngster");
+    end
+
+rule "elder"
+    when
+        $p : Person(age > 60);
+    then
+        resultBean.getAdditionalRepMap().put("AgeClassification","elder");
+    end

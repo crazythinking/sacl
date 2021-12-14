@@ -25,11 +25,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date : 2020-10-31 18:52
  * @since :
  **/
-@Profile({"stream.common.bindings.input", "stream.common"})
+@Profile({
+        "channel.stream.input.rabbit",
+        "channel.stream.input.kafka"
+})
 @Service
-public class UserInputStreamHandler extends AbstractConsumeBustreamHandler<User> implements InitializingBean {
+public class UserInput4AutoAckStreamHandler extends AbstractConsumeBustreamHandler<User> implements InitializingBean {
     /** logger */
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserInputStreamHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserInput4AutoAckStreamHandler.class);
 
     public List<User> users = new ArrayList<>();
 

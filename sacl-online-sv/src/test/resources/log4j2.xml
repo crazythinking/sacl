@@ -34,8 +34,7 @@
     <Loggers>
 
         <!--只输入级别高于trace的日志-->
-        <!-- includeLocation="true" 用于显示日志所在行数和方法名，但会降低200至300倍左右的性能-->
-        <AsyncRoot level="${LOG_LEVEL}" >
+        <AsyncRoot level="${LOG_LEVEL}">
             <AppenderRef ref="Console"/>
             <!--<AppenderRef ref="AllLog"/>-->
         </AsyncRoot>

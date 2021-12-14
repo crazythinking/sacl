@@ -1,0 +1,18 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: sacl-online-sv
+
+logging:
+  level:
+    root: warn
+    org.springframework: info
+    net.engining: trace
+
+gm:
+  config:
+    enabled:
+      swagger: false
+
+

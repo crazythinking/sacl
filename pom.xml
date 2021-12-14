@@ -177,12 +177,7 @@
             <dependency>
                 <groupId>net.engining.sacl</groupId>
                 <artifactId>sacl-config</artifactId>
-                <version>${sacl.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>net.engining.sacl</groupId>
-                <artifactId>sacl-tools-component</artifactId>
-                <version>${sacl.version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- spring boot 依赖的是5.1.47，其是针对mysql5.4之前的版本，目前基本都用5.6+的版本，根据mysql的官方的推荐使用8+的版本 -->
@@ -271,6 +266,7 @@
                     <include>application-*.${profileActive}.yml</include>
                     <include>application-*.common.properties</include>
                     <include>application-*.common.yml</include>
+                    <include>swagger.properties</include>
                     <include>application.properties</include>
                     <include>application.yml</include>
                     <include>bootstrap.yml</include>

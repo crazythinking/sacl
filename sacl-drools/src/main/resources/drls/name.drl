@@ -1,0 +1,12 @@
+package drls;
+
+import net.engining.sacl.drools.Person;
+
+global net.engining.pg.drools.beans.ResultBean resultBean;
+
+rule "combine name"
+    when
+        $p : Person(desc str[startsWith] "combine");
+    then
+        resultBean.getAdditionalRepMap().put("nameCombine",$p.getName()+$p.getDesc());
+    end

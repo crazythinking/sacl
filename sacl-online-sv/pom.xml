@@ -16,6 +16,8 @@
 	<properties>
 		<maven.deploy.skip>true</maven.deploy.skip>
 		<elasticsearch.version>7.6.2</elasticsearch.version>
+		<micrometer.version>1.5.14</micrometer.version>
+		<micrometer-jvm.version>0.2.2</micrometer-jvm.version>
 	</properties>
 
 	<dependencies>
@@ -27,6 +29,10 @@
 				<exclusion>
 					<artifactId>spring-boot-starter-logging</artifactId>
 					<groupId>org.springframework.boot</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>simpleclient</artifactId>
+					<groupId>io.prometheus</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -153,6 +159,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-kafka</artifactId>
+		</dependency>
 
 		<!-- spring security, oauth2, jwt依赖 -->
 		<dependency>
@@ -211,6 +221,18 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!--暴露prometheus指标-->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<version>${micrometer.version}</version>
+		</dependency>
+		<!--用于进程内存使用图表-->
+		<dependency>
+			<groupId>io.github.mweirauch</groupId>
+			<artifactId>micrometer-jvm-extras</artifactId>
+			<version>${micrometer-jvm.version}</version>
 		</dependency>
 
 		<!-- 状态机 -->
@@ -303,6 +325,11 @@
 		</dependency>
 		<dependency>
 			<groupId>net.engining.starter</groupId>
+			<artifactId>gm-spring-boot-starter</artifactId>
+			<version>${starter.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.engining.starter</groupId>
 			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
 			<version>${starter.version}</version>
 			<exclusions>
@@ -311,6 +338,11 @@
 					<groupId>org.codehaus.groovy</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>net.engining.starter</groupId>
+			<artifactId>transflow-spring-boot-starter</artifactId>
+			<version>${starter.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.engining.starter</groupId>
