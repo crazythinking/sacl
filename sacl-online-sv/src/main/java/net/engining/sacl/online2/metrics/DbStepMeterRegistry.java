@@ -4,7 +4,6 @@ import io.micrometer.core.instrument.Clock;
 import io.micrometer.core.instrument.Measurement;
 import io.micrometer.core.instrument.Meter;
 import io.micrometer.core.instrument.Tag;
-import io.micrometer.core.instrument.config.validate.Validated;
 import io.micrometer.core.instrument.step.StepMeterRegistry;
 import io.micrometer.core.instrument.step.StepRegistryConfig;
 import org.slf4j.Logger;

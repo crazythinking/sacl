@@ -15,6 +15,7 @@
 	
 	<properties>
 		<maven.deploy.skip>true</maven.deploy.skip>
+		<log4j2.version>2.16.0</log4j2.version>
 		<elasticsearch.version>7.6.2</elasticsearch.version>
 		<micrometer.version>1.5.14</micrometer.version>
 		<micrometer-jvm.version>0.2.2</micrometer-jvm.version>
@@ -352,6 +353,11 @@
 		<dependency>
 			<groupId>net.engining.starter</groupId>
 			<artifactId>redis-spring-boot-starter</artifactId>
+			<version>${starter.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.engining.starter</groupId>
+			<artifactId>metrics-spring-boot-starter</artifactId>
 			<version>${starter.version}</version>
 		</dependency>
 
