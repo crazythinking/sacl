@@ -26,6 +26,7 @@ import java.util.StringJoiner;
  * @since :
  **/
 @ActiveProfiles(profiles = {
+        "metrics"
 })
 @DirtiesContext(classMode= DirtiesContext.ClassMode.AFTER_CLASS)
 public class MetricsTestCase extends AbstractTestCaseTemplate {

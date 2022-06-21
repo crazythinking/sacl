@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Lazy;
 @Configuration
 @ComponentScan(basePackages = {
 		"net.engining.sacl.online2.metrics",
-		"net.engining.sacl.online2.bus",
+		//"net.engining.sacl.online2.bus",
 })
 public class CombineConfiguration {
 

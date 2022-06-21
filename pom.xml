@@ -7,7 +7,7 @@
     <parent>
         <groupId>net.engining.project</groupId>
         <artifactId>project-parent</artifactId>
-        <version>3.7-SNAPSHOT</version>
+        <version>3.7.RELEASE</version>
     </parent>
 
     <groupId>net.engining.sacl</groupId>
@@ -19,11 +19,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sacl.version>${project.version}</sacl.version>
 
-        <pg.version>3.7.0-SNAPSHOT</pg.version>
-        <control.version>1.2.0-SNAPSHOT</control.version>
-        <gm.version>1.6.0-SNAPSHOT</gm.version>
+        <pg.version>3.7.0.RELEASE</pg.version>
+        <control.version>1.2.0.RELEASE</control.version>
+        <gm.version>1.6.0.RELEASE</gm.version>
         <profile.version>4.1.0-SNAPSHOT</profile.version>
-        <starter.version>2.0.0-SNAPSHOT</starter.version>
+        <starter.version>2.0.0.RELEASE</starter.version>
 
         <nepxion.discovery.version>6.10.0</nepxion.discovery.version>
         <spring.statemachine.version>2.2.0.RELEASE</spring.statemachine.version>
