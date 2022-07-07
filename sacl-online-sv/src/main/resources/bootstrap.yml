@@ -6,11 +6,9 @@ spring:
   application:
     name: sacl-online-sv
   cloud:
-    #默认注册中心disable，这里是为了可以通过profile切换不同注册中心
-    zookeeper:
-      enabled: false
-      discovery:
-        enabled: false
+    loadbalancer:
+      ribbon:
+        enabled: true
     #默认注册中心disable，这里是为了可以通过profile切换不同注册中心
     #实际生产或测试环境服务注册中心与配置中心可能是分开部署的，因为通常服务注册中心需要更好的性能及需要承受更大的负载；因此分别指定服务地址；
     nacos:
@@ -20,25 +18,25 @@ spring:
       config:
         enabled: false
         #dev
-        server-addr: ubuntu.wsl:8888
+        server-addr: ubuntu.wsl:8848
         group: sacl
-#        extension-configs[x]:
-#          - dataId: scsv.properties
-#            group: DEFAULT_GROUP
-#            refresh: true
-#          - dataId: nacos.properties
-#            group: DEFAULT_GROUP
-#            refresh: true
-#          - dataId: druid.properties
-#            group: DEFAULT_GROUP
-#            refresh: true
-    bus:
-      enabled: false
-      ack:
-        enabled: false
-      env:
-        enabled: false
-      refresh:
-        enabled: false
-      trace:
-        enabled: false
+    inetutils:
+      default-ip-address: 172.24.176.1
+  autoconfigure:
+    exclude:
+      - org.springframework.cloud.netflix.archaius.ArchaiusAutoConfiguration
+      - org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.redisson.spring.starter.RedissonAutoConfiguration
+
+#sacl-online-sv:
+#  ribbon.NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+
+pg:
+  redisson:
+    enabled: false
+
+#默认关闭bustream组件
+gm:
+  bustream:
+    enabled: false

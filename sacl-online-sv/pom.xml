@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>net.engining.sacl</groupId>
 		<artifactId>sacl-parent</artifactId>
-		<version>0.2.0-SNAPSHOT</version>
+		<version>0.3.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>sacl-online-sv</artifactId>
@@ -15,10 +15,10 @@
 	
 	<properties>
 		<maven.deploy.skip>true</maven.deploy.skip>
-		<log4j2.version>2.16.0</log4j2.version>
-		<elasticsearch.version>7.6.2</elasticsearch.version>
-		<micrometer.version>1.5.14</micrometer.version>
-		<micrometer-jvm.version>0.2.2</micrometer-jvm.version>
+
+		<sentinel.version>1.8.1</sentinel.version>
+		<shenyu.version>2.4.3</shenyu.version>
+
 	</properties>
 
 	<dependencies>
@@ -32,6 +32,10 @@
 					<groupId>org.springframework.boot</groupId>
 				</exclusion>
 				<exclusion>
+					<artifactId>javassist</artifactId>
+					<groupId>org.javassist</groupId>
+				</exclusion>
+				<exclusion>
 					<artifactId>simpleclient</artifactId>
 					<groupId>io.prometheus</groupId>
 				</exclusion>
@@ -42,52 +46,6 @@
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
 		</dependency>
-
-		<!-- ZK 服务注册发现中心 -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.zookeeper</groupId>
-					<artifactId>zookeeper</artifactId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jsr305</artifactId>
-					<groupId>com.google.code.findbugs</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>spring-cloud-netflix-hystrix</artifactId>
-					<groupId>org.springframework.cloud</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.zookeeper</groupId>
-			<artifactId>zookeeper</artifactId>
-			<version>${zookeeper.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-log4j12</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>log4j</groupId>
-					<artifactId>log4j</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<!-- 针对Nacos服务注册发现中心的nepxion扩展 -->
-		<!-- <dependency>
-		    <groupId>com.nepxion</groupId>
-		    <artifactId>discovery-plugin-starter-nacos</artifactId>
-		</dependency> -->
-		<!-- 针对Nacos配置中心的nepxion扩展 -->
-		<!-- <dependency>
-		    <groupId>com.nepxion</groupId>
-		    <artifactId>discovery-plugin-config-center-starter-nacos</artifactId>
-		</dependency> -->
 
 		<!-- Sentinel流控管理 -->
 		<dependency>
@@ -104,12 +62,6 @@
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-transport-netty-http</artifactId>
 			<version>${sentinel.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>sentinel-transport-common</artifactId>
-					<groupId>com.alibaba.csp</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
@@ -120,6 +72,7 @@
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-datasource-nacos</artifactId>
+			<version>${sentinel.version}</version>
 		</dependency>
 
 		<!--feign -->
@@ -130,6 +83,10 @@
 				<exclusion>
 					<artifactId>HdrHistogram</artifactId>
 					<groupId>org.hdrhistogram</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jsr305</artifactId>
+					<groupId>com.google.code.findbugs</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -144,18 +101,22 @@
 			<artifactId>feign-okhttp</artifactId>
 		</dependency>
 		<!-- feign apache http -->
-		<dependency>
+		<!--<dependency>
 			<groupId>io.github.openfeign</groupId>
 			<artifactId>feign-httpclient</artifactId>
 			<version>10.4.0</version>
 		</dependency>
-		<!-- apache http -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-		</dependency>
+		</dependency>-->
 
-		<!-- spring cloud bus -->
+		<!-- spring cloud bus stream-->
+		<dependency>
+			<groupId>net.engining.starter</groupId>
+			<artifactId>bustream-spring-boot-starter</artifactId>
+			<version>${starter.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
@@ -163,18 +124,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bus-kafka</artifactId>
-		</dependency>
-
-		<!-- spring security, oauth2, jwt依赖 -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-oauth2</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>bcpkix-jdk15on</artifactId>
-					<groupId>org.bouncycastle</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<!-- web -->
@@ -196,63 +145,88 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-undertow</artifactId>
 		</dependency>
-
-		<!-- redis -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<!-- redis lettuce 需要依赖此创建连接池 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-pool2</artifactId>
-		</dependency>
-
-		<!--暴露各种指标 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+		<!-- spring security, oauth2, jwt依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		<!--暴露prometheus指标-->
 		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-prometheus</artifactId>
-			<version>${micrometer.version}</version>
-		</dependency>
-		<!--用于进程内存使用图表-->
-		<dependency>
-			<groupId>io.github.mweirauch</groupId>
-			<artifactId>micrometer-jvm-extras</artifactId>
-			<version>${micrometer-jvm.version}</version>
-		</dependency>
-
-		<!-- 状态机 -->
-		<dependency>
-			<groupId>org.springframework.statemachine</groupId>
-			<artifactId>spring-statemachine-starter</artifactId>
-			<version>${spring.statemachine.version}</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-oauth2</artifactId>
 			<exclusions>
 				<exclusion>
-					<artifactId>spring-boot-starter-logging</artifactId>
-					<groupId>org.springframework.boot</groupId>
+					<artifactId>bcpkix-jdk15on</artifactId>
+					<groupId>org.bouncycastle</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
+		<!-- redis -->
+		<dependency>
+			<groupId>net.engining.starter</groupId>
+			<artifactId>redis-spring-boot-starter</artifactId>
+			<version>${starter.version}</version>
+		</dependency>
+
+		<!-- database -->
+		<dependency>
+			<groupId>net.engining.starter</groupId>
+			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+			<version>${starter.version}</version>
+		</dependency>
+
+		<!-- 暴露监控指标 -->
+		<dependency>
+			<groupId>net.engining.starter</groupId>
+			<artifactId>metrics-spring-boot-starter</artifactId>
+			<version>${starter.version}</version>
+		</dependency>
+		<!-- expose JMX -->
+		<dependency>
+			<groupId>org.jolokia</groupId>
+			<artifactId>jolokia-core</artifactId>
+		</dependency>
+
+		<!-- trans flow -->
+		<dependency>
+			<groupId>net.engining.starter</groupId>
+			<artifactId>transflow-spring-boot-starter</artifactId>
+			<version>${starter.version}</version>
+		</dependency>
+
+		<!-- gm config -->
+		<dependency>
+			<groupId>net.engining.starter</groupId>
+			<artifactId>gm-spring-boot-starter</artifactId>
+			<version>${starter.version}</version>
+		</dependency>
 		<!-- 重试支持 -->
 		<dependency>
 			<groupId>org.springframework.retry</groupId>
 			<artifactId>spring-retry</artifactId>
+		</dependency>
+		<!-- swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>mapstruct</artifactId>
+					<groupId>org.mapstruct</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>animal-sniffer-annotations</artifactId>
+					<groupId>org.codehaus.mojo</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>error_prone_annotations</artifactId>
+					<groupId>com.google.errorprone</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
 		</dependency>
 
 		<!-- 支持切面 -->
@@ -261,34 +235,25 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 
-		<!-- 支持JPA -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
 		<!-- 支持方法级验证 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
-		<!-- swagger -->
+		<!-- shenyu gateway-->
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
+			<groupId>org.apache.shenyu</groupId>
+			<artifactId>shenyu-spring-boot-starter-client-springcloud</artifactId>
+			<version>${shenyu.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>disruptor</artifactId>
+					<groupId>com.lmax</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-		</dependency>
-		
-		<!-- expose JMX -->
-		<dependency>
-			<groupId>org.jolokia</groupId>
-			<artifactId>jolokia-core</artifactId>
-		</dependency>
-		
+
 		<!-- GraphQL -->
 		<!--<dependency>
 			<groupId>com.graphql-java</groupId>
@@ -301,6 +266,7 @@
 			<version>5.2.4</version>
 		</dependency>-->
 
+		<!-- skywalking -->
 		<dependency>
 			<groupId>org.apache.skywalking</groupId>
 			<artifactId>apm-toolkit-log4j-2.x</artifactId>
@@ -310,55 +276,10 @@
 			<artifactId>apm-toolkit-trace</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy</artifactId>
-		</dependency>
-
 		<!-- 自身依赖 -->
-		<dependency>
-			<groupId>net.engining.pg</groupId>
-			<artifactId>pg-web</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>net.engining.sacl</groupId>
 			<artifactId>sacl-config</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.engining.starter</groupId>
-			<artifactId>gm-spring-boot-starter</artifactId>
-			<version>${starter.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.engining.starter</groupId>
-			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-			<version>${starter.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>groovy</artifactId>
-					<groupId>org.codehaus.groovy</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>net.engining.starter</groupId>
-			<artifactId>transflow-spring-boot-starter</artifactId>
-			<version>${starter.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.engining.starter</groupId>
-			<artifactId>bustream-spring-boot-starter</artifactId>
-			<version>${starter.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.engining.starter</groupId>
-			<artifactId>redis-spring-boot-starter</artifactId>
-			<version>${starter.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.engining.starter</groupId>
-			<artifactId>metrics-spring-boot-starter</artifactId>
-			<version>${starter.version}</version>
 		</dependency>
 
 		<!-- dbcp连接池和mysql驱动 -->
@@ -369,7 +290,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.oracle</groupId>
-			<artifactId>oracle6</artifactId>
+			<artifactId>oracle8</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -388,13 +309,6 @@
 					<groupId>org.objenesis</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-stream</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-			<classifier>test-binder</classifier>
 		</dependency>
 
 	</dependencies>

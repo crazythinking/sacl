@@ -19,16 +19,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author luxue
  *
  */
-@EnableDiscoveryClient
 @EnableFeignClients(clients = {
         Sao.class
 })
-@EnableCircuitBreaker
-@RemoteApplicationEventScan(basePackages = "net.engining.sacl.online2.bus")
-@SpringBootApplication(exclude = {
-        ArchaiusAutoConfiguration.class,
-        //ScenarioSimulationKieServerAutoConfiguration.class
-})
+//@EnableCircuitBreaker
+//@RemoteApplicationEventScan(basePackages = "net.engining.sacl.online2.bus")
+@SpringBootApplication
 public class OnlineApplication extends SpringBootServletInitializer{
 	
 	@Override

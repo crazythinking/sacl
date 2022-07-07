@@ -5,173 +5,33 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>net.engining.project</groupId>
-        <artifactId>project-parent</artifactId>
-        <version>3.7.RELEASE</version>
+        <groupId>net.engining.starter</groupId>
+        <artifactId>starter-parent</artifactId>
+        <version>2.1.0-SNAPSHOT</version>
     </parent>
 
     <groupId>net.engining.sacl</groupId>
     <artifactId>sacl-parent</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sacl.version>${project.version}</sacl.version>
+        <sacl.version>0.3.0-SNAPSHOT</sacl.version>
 
-        <pg.version>3.7.0.RELEASE</pg.version>
-        <control.version>1.2.0.RELEASE</control.version>
-        <gm.version>1.6.0.RELEASE</gm.version>
-        <profile.version>4.1.0-SNAPSHOT</profile.version>
-        <starter.version>2.0.0.RELEASE</starter.version>
-
-        <nepxion.discovery.version>6.10.0</nepxion.discovery.version>
-        <spring.statemachine.version>2.2.0.RELEASE</spring.statemachine.version>
-        <swagger2.version>2.9.2</swagger2.version>
-        <!--<swagger3.version>3.0.0</swagger3.version>-->
-        <swagger-project.version>1.5.22</swagger-project.version>
-        <zookeeper.version>3.4.13</zookeeper.version>
-        <jasypt.version>2.1.1</jasypt.version>
-        <groovy.version>3.0.5</groovy.version>
-        <sentinel.version>1.8.0</sentinel.version>
-        <oracle.version>12.2.0.1.0</oracle.version>
+        <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
+        <oracle.version>21.3.0.0.0</oracle.version>
+        <!--<nepxion.discovery.version>6.10.0</nepxion.discovery.version>-->
     </properties>
 
     <modules>
         <module>sacl-config</module>
         <!--<module>sacl-dubbo-prov-sv</module>-->
         <module>sacl-online-sv</module>
-        <!--<module>sacl-auth-sv</module>-->
-        <!--<module>sacl-tools-component</module>-->
-        <!--<module>sacl-tools</module>-->
-<!--        <module>sacl-batch-executor-sv</module>-->
     </modules>
 
     <dependencyManagement>
         <dependencies>
-            <!-- spring cloud -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- spring cloud alibaba -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring.cloud.alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- spring cloud netflix -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-netflix</artifactId>
-                <version>${spring-cloud-netflix.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.statemachine</groupId>
-                <artifactId>spring-statemachine-bom</artifactId>
-                <version>${spring.statemachine.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- jasypt -->
-            <dependency>
-                <groupId>com.github.ulisesbocchio</groupId>
-                <artifactId>jasypt-spring-boot-starter</artifactId>
-                <version>${jasypt.version}</version>
-            </dependency>
-
-            <!--<dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-boot-starter</artifactId>
-                <version>${swagger3.version}</version>
-            </dependency>-->
-
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${swagger-project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-models</artifactId>
-                <version>${swagger-project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.skywalking</groupId>
-                <artifactId>apm-toolkit-log4j-2.x</artifactId>
-                <version>${skywalking.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.skywalking</groupId>
-                <artifactId>apm-toolkit-trace</artifactId>
-                <version>${skywalking.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-all</artifactId>
-                <version>${groovy.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- 自身框架依赖 -->
-            <dependency>
-                <groupId>net.engining.pg</groupId>
-                <artifactId>pg-parent</artifactId>
-                <version>${pg.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>net.engining.control</groupId>
-                <artifactId>control-parent</artifactId>
-                <version>${control.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>net.engining.gm</groupId>
-                <artifactId>gm-parent</artifactId>
-                <version>${gm.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>net.engining.profile</groupId>
-                <artifactId>profile-parent</artifactId>
-                <version>${profile.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>net.engining.starter</groupId>
-                <artifactId>starter-parent</artifactId>
-                <version>${starter.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
 
             <!-- 自身项目依赖 -->
             <dependency>
@@ -184,13 +44,13 @@
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.13</version><!--$NO-MVN-MAN-VER$ -->
+                <version>${mysql-connector-java.version}</version>
                 <scope>runtime</scope>
             </dependency>
             <!-- oracle -->
             <dependency>
                 <groupId>com.oracle</groupId>
-                <artifactId>oracle6</artifactId>
+                <artifactId>oracle8</artifactId>
                 <version>${oracle.version}</version>
                 <scope>runtime</scope>
             </dependency>

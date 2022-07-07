@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiOperation;
 import net.engining.pg.web.CommonWithHeaderResponseBuilder;
 import net.engining.pg.web.bean.CommonWithHeaderResponse;
+import org.apache.shenyu.client.springcloud.annotation.ShenyuSpringCloudClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value={"/learnNacos"})
+//@ShenyuSpringCloudClient(path = "/learnNacos/**")
 public class EchoController {
 
 	@Autowired
@@ -30,7 +32,7 @@ public class EchoController {
 	public static final String A = "";
 
 	@ApiOperation(value = "Hello，Nacos Discovery", notes = "")
-	@PreAuthorize("hasAuthority('ProfileBranch')")
+	//@ShenyuSpringCloudClient(path = "/echo/**")
 	@GetMapping(value = "/echo/{string}")
 	public CommonWithHeaderResponse<Void, Void> echo(@PathVariable String string) {
 

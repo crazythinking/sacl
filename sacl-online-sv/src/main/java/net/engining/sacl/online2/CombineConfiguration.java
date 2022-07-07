@@ -13,16 +13,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  *
  */
 @Configuration
-@EnableSwagger2
 @EntityScan(
 		basePackages = {
 				"net.engining.pg.parameter.entity",
 		})
 public class CombineConfiguration {
-
-//	@Bean
-//	public Request.Options options(){
-//		return new Request.Options(2000,1000);
-//	}
 
 }

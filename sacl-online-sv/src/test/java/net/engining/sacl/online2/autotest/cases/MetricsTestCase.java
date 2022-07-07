@@ -7,8 +7,6 @@ import com.google.common.collect.Lists;
 import io.micrometer.core.instrument.Metrics;
 import io.micrometer.core.instrument.config.MeterFilter;
 import io.micrometer.core.instrument.search.Search;
-import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
-import io.micrometer.prometheus.PrometheusMeterRegistry;
 import net.engining.sacl.online2.autotest.support.AbstractTestCaseTemplate;
 import net.engining.sacl.online2.metrics.DbStepMeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
