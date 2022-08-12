@@ -9,6 +9,7 @@ import org.springframework.cloud.openfeign.support.FeignHttpClientProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author : Eric Lu
@@ -30,11 +31,12 @@ public class SaoService {
 
     public List<Foo> echo2() {
         FeignClientProperties.FeignClientConfiguration config = feignClientProperties.getConfig().get("echo-service");
+        // 指定特定接口的超时配置
         String response = sao.echo2(
-//                new Request.Options(
-//                        feignHttpClientProperties.getConnectionTimeout(),
-//                        config.getReadTimeout()
-//                )
+                new Request.Options(
+                        config.getConnectTimeout(), TimeUnit.SECONDS,
+                        3, TimeUnit.SECONDS,
+                        false)
         );
 
         return JSON.parseArray(response, Foo.class);

@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface Sao {
 
     @GetMapping(value = "/sentest/echoObj2")
-    String echo2(
-            //Request.Options options
-    );
+    String echo2(Request.Options options);
 
 }
